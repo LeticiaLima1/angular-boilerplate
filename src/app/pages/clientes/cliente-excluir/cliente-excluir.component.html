@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<div class="card">
+    <h2>
+        Excluir Cliente
+    </h2>
+    <form #form="ngForm" (ngSubmit)="excluirCliente()">
+        <div>
+            <label for="nome">Nome</label>
+            <input
+                type="text"
+                class="form-control" id="nome"
+                required
+                [(ngModel)]="nome"
+                name="nome">
+        </div>
+        <div>
+            <button class="button" type="submit">Excluir</button>
+        </div>
+        <div class="row"  *ngIf="showMsg">
+            <div class="col-xs-12">
+                <p class="alert alert-success">
+                    <strong>Cliente excluído!</strong>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+</html>

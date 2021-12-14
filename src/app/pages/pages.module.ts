@@ -1,17 +1,27 @@
+import { ClienteIncluirComponent } from './clientes/cliente-incluir/cliente-incluir.component';
 import { NgModule } from "@angular/core";
 import { ThemeModule } from "../@theme/theme.module";
 import { PagesRoutingModule } from "./pages-routing.module";
 import { PagesComponent } from "./pages.component";
-import { ExampleComponent } from './example/example.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ClienteListarComponent } from './clientes/cliente-listar/cliente-listar.component';
+import { ClienteConsultarComponent } from './clientes/cliente-consultar/cliente-consultar.component';
+import { ClienteExcluirComponent } from './clientes/cliente-excluir/cliente-excluir.component';
 
 @NgModule({
 	imports: [
-        PagesRoutingModule,
-        ThemeModule
+                PagesRoutingModule,
+                ThemeModule,
+                CommonModule,
+                FormsModule,
 	],
 	declarations: [
 		PagesComponent,
-		ExampleComponent,
+                ClienteIncluirComponent,
+                ClienteListarComponent,
+                ClienteConsultarComponent,
+                ClienteExcluirComponent
 	],
 	providers: []
 })

@@ -1,0 +1,26 @@
+<div class="card">
+    <h2>
+      Consulta de cliente
+    </h2>
+
+    <form #form="ngForm" (ngSubmit)="consultarCliente()">
+      <div>
+        <label for="nome">Nome</label>
+        <input
+            type="search"
+            class="form-control" id="nome"
+            required
+            [(ngModel)]="cliente.nome"
+            name="nome">
+      </div>
+      <div>
+        <button class="button" type="submit">Consultar</button>
+      </div>
+    </form>
+    <div *ngIf="mostrarCliente">
+        <p>{{clienteRetorno.nome}}</p>
+        <p>{{clienteRetorno.telefone}}</p>
+        <p>{{clienteRetorno.email}}</p>
+        <p>{{clienteRetorno.status}}</p>
+    </div>
+  </div>
