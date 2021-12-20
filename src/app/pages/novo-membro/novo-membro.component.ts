@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MembrosService } from '../membros.service';
 import { Membro, NovoMembro } from '../../models/membros';
+import { DatePipe } from '@angular/common'
 
 
 @Component({
@@ -25,6 +26,8 @@ export class NovoMembroComponent  {
   nome: string;
   dataNascimento: Date;
   valorMesada: number;
+  date: Date;
+  datepipe: any;
 
   constructor(
     private membrosService: MembrosService,
@@ -70,7 +73,7 @@ export class NovoMembroComponent  {
     }
   }
 
-  validarUploadArquivo(el) {
+  validarUploadArquivo(el: { files: { size: any; }[]; }) {
     const maxfilesize = (1024 * 1024)*10,  // 10 Mb
         filesize    = el.files[0].size,
         warningel   = document.getElementById( 'lbError' );
@@ -89,11 +92,21 @@ export class NovoMembroComponent  {
 
   validarDataNascimento(){
     const dtNascimento = new Date(this.form.get('dataNascimento').value);
-    const dtAtual: Date = new Date;
-    const idadeAnos: number = dtAtual.getFullYear() - dtNascimento.getFullYear(); 
+    const dtAtual = new Date();
+    const idadeAnos: number = dtAtual.getFullYear() - dtNascimento.getFullYear();
+
+    const dtNascimentoMais1 = dtNascimento.getTime();
+    const dtAtualOffSet = dtAtual.getTime(); 
+
+    const days = this.days_between(dtAtual, dtNascimento);
+
+    if(dtNascimento.getUTCDate() == dtAtual.getUTCDate()){
+      this.mensagemErroDtNascimento = "Data de nascimento não pode ser igual a hoje"
+      return true;
+    }
     
-    if(dtNascimento >= dtAtual){
-      this.mensagemErroDtNascimento = "Data de nascimento deve ser maior que hoje"
+    if(dtNascimentoMais1 > dtAtualOffSet){
+      this.mensagemErroDtNascimento = "Data de nascimento deve ser menor que hoje"
       return true;
     }
 
@@ -103,6 +116,16 @@ export class NovoMembroComponent  {
     }
 
     return false;
+  }
+
+  days_between(date1, date2) {
+
+    const ONE_DAY = 1000 * 60 * 60 * 24;
+
+    const differenceMs = Math.abs(date1 - date2);
+
+    return Math.round(differenceMs / ONE_DAY);
+
   }
 
   voltar(){

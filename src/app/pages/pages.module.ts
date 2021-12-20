@@ -16,6 +16,10 @@ import {MatCardModule} from '@angular/material/card';
 import { CartaoModule } from "../componentes/cartao/cartao.module";
 import { MembroComponent } from "../componentes/membro/membro.component";
 import { MensagemModule } from "../componentes/mensagem/mensagem.module";
+import { HistoricoComponent } from './historico/historico.component';
+import { ListasDeAtividadesComponent } from './listas-de-atividades/listas-de-atividades.component';
+import { AtividadesComponent } from './atividades/atividades.component';
+import { GerenciarListasComponent } from './gerenciar-listas/gerenciar-listas.component';
 
 
 
@@ -40,7 +44,11 @@ import { MensagemModule } from "../componentes/mensagem/mensagem.module";
 		PagesComponent,
 		ListaMembrosComponent,
 		NovoMembroComponent,
-		MembroComponent
+		MembroComponent,
+		HistoricoComponent,
+		ListasDeAtividadesComponent,
+		AtividadesComponent,
+		GerenciarListasComponent
 	],
 	providers: []
 })

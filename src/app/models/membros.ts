@@ -14,5 +14,12 @@ export interface NovoMembro {
   valorMesada: number;
 }
 
+export interface MembroLista {
+  foto: string;
+  nome: string;
+  dataNascimento: string;
+  valorMesada: number;
+}
+
 export type Membros = Array<Membro>;
   

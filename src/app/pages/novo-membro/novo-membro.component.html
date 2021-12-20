@@ -34,7 +34,8 @@
                 placeholder="Nome do membro" 
                 formControlName="nome"
                 [(ngModel)]="nome"
-                required>
+                required
+                >
                 <app-mensagem
                     *ngIf="form.get('nome')?.errors && form.get('nome')?.touched"
                     mensagem="Nome obrigatório">
@@ -51,6 +52,10 @@
                 [(ngModel)]="dataNascimento"
                 required>
                 <app-mensagem
+                    *ngIf="form.get('dataNascimento')?.errors && form.get('dataNascimento')?.touched"
+                    mensagem="Data de Nascimento obrigatória">
+                </app-mensagem>
+                <app-mensagem
                     *ngIf="validarDataNascimento()"
                     mensagem="{{mensagemErroDtNascimento}}">
                 </app-mensagem>
@@ -60,12 +65,13 @@
             <mat-label>Valor da mesada</mat-label>
             <input 
                 matInput 
-                type="number" 
+                type="number"
                 formControlName="valorMesada"
                 placeholder="Valor da mesada" 
                 [(ngModel)]="valorMesada"
                 required
-                min="0">
+                min="0"
+                step=".01">
                 <app-mensagem
                     *ngIf="form.get('valorMesada')?.errors && form.get('valorMesada')?.touched"
                     mensagem="Valor da mesada é obrigatório">
@@ -75,7 +81,6 @@
                     mensagem="Valor da mesada deve ser positivo">
                 </app-mensagem>
         </mat-form-field>
-    
           <button mat-raised-button type="submit" color="primary">Cadastrar</button>
     
           <button mat-raised-button color="warn" (click)="voltar()">Cancelar</button>
