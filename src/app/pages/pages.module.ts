@@ -4,7 +4,7 @@ import { PagesRoutingModule } from "./pages-routing.module";
 import { PagesComponent } from "./pages.component";
 import { ListaMembrosComponent } from './lista-membros/lista-membros.component';
 import { CabecalhoModule } from "../componentes/cabecalho/cabecalho.module";
-import { NovoMembroComponent } from './novo-membro/novo-membro.component';
+import { NovoMembroComponent } from './lista-membros/novo-membro/novo-membro.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import {MatInputModule} from '@angular/material/input';
@@ -20,8 +20,16 @@ import { HistoricoComponent } from './historico/historico.component';
 import { ListasDeAtividadesComponent } from './listas-de-atividades/listas-de-atividades.component';
 import { AtividadesComponent } from './atividades/atividades.component';
 import { GerenciarListasComponent } from './gerenciar-listas/gerenciar-listas.component';
-
-
+import { AtividadeCadastrarComponent } from './atividades/atividade-cadastrar/atividade-cadastrar.component';
+import { AtividadeExcluirComponent } from './atividades/atividade-excluir/atividade-excluir.component';
+import { AtividadeEditarComponent } from './atividades/atividade-editar/atividade-editar.component';
+import { MembroExcluirComponent } from './lista-membros/membro-excluir/membro-excluir.component';
+import { MembroEditarComponent } from './lista-membros/membro-editar/membro-editar.component';
+import { DialogComponent } from "../componentes/dialog/dialog.component";
+import { DialogSucessoComponent } from "../componentes/dialog-sucesso/dialog-sucesso.component";
+import { DialogEditarComponent } from "../componentes/dialog-editar/dialog-editar.component";
+import { DialogCadastrarComponent } from "../componentes/dialog-cadastrar/dialog-cadastrar.component";
+import { DialogConfirmacaoComponent } from "../componentes/dialog-confirmacao/dialog-confirmacao.component";
 
 @NgModule({
 	imports: [
@@ -48,8 +56,19 @@ import { GerenciarListasComponent } from './gerenciar-listas/gerenciar-listas.co
 		HistoricoComponent,
 		ListasDeAtividadesComponent,
 		AtividadesComponent,
-		GerenciarListasComponent
+		GerenciarListasComponent,
+		AtividadeCadastrarComponent,
+		AtividadeExcluirComponent,
+		AtividadeEditarComponent,
+		MembroExcluirComponent,
+		MembroEditarComponent,
+		DialogComponent,
+		DialogSucessoComponent,
+		DialogEditarComponent,
+		DialogCadastrarComponent,
+		DialogConfirmacaoComponent
 	],
-	providers: []
+	providers: [],
+	entryComponents: [ DialogComponent, DialogSucessoComponent, DialogEditarComponent, DialogCadastrarComponent, DialogConfirmacaoComponent ]
 })
 export class PagesModule { }

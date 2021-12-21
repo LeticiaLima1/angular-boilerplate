@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { mapTo, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { TokenService } from '../autenticacao/token.service';
 import { environment } from '../environments/environment';
 import { Membro, Membros, NovoMembro } from '../models/membros';
@@ -29,7 +28,7 @@ export class MembrosService {
     return this.http.delete<Membro>(`${API}/membros/${id}`);
   }
 
-  inserirFoto(arquivo: File) {
+  inserirFoto(arquivo: File): Observable<HttpEvent<Object>>{
     const formData = new FormData();
     formData.append('imageFile', arquivo);
 
@@ -39,7 +38,11 @@ export class MembrosService {
     });
   }
 
-  cadastraNovoMembro(novoMembro: NovoMembro){
+  cadastraNovoMembro(novoMembro: NovoMembro): Observable<Object>{
+    return this.http.post(`${API}user/inserirMembro`, novoMembro);
+  }
+
+  editarMembro(novoMembro: Membro): Observable<Object>{
     return this.http.post(`${API}user/inserirMembro`, novoMembro);
   }
 }

@@ -1,5 +1,5 @@
 import { AutenticacaoService } from './../../autenticacao/autenticacao.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     email = '';
     senha = '';
 
@@ -18,11 +18,9 @@ export class LoginComponent implements OnInit {
         private router:Router
     ) {}
 
-    ngOnInit(): void {}
-
-    login() {
+    login(): void {
         this.authService.autenticar(this.email, this.senha).subscribe(()=> {
-            this.router.navigate(['pages']);
+            this.router.navigate(['pages/listas-de-atividades']);
             }, 
         (error) => {
             alert("E-mail ou senha inválido");

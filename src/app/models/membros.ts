@@ -4,7 +4,6 @@ export interface Membro {
   nome: string;
   dataNascimento: Date;
   valorMesada: number;
-  
 }
 
 export interface NovoMembro {
@@ -21,5 +20,5 @@ export interface MembroLista {
   valorMesada: number;
 }
 
-export type Membros = Array<Membro>;
+export type Membros = Membro[];
   

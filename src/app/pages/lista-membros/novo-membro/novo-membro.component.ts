@@ -1,12 +1,8 @@
-
-import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { MembrosService } from '../membros.service';
-import { Membro, NovoMembro } from '../../models/membros';
-import { DatePipe } from '@angular/common'
+import { Component, OnInit } from '@angular/core';
+import { NovoMembro } from '../../../models/membros';
+import { MembrosService } from '../../membros.service';
 
 
 @Component({
@@ -15,7 +11,7 @@ import { DatePipe } from '@angular/common'
   styleUrls: ['./novo-membro.component.css']
 })
 
-export class NovoMembroComponent  {
+export class NovoMembroComponent implements OnInit {
 
   form: FormGroup;
   file: File;
@@ -29,13 +25,8 @@ export class NovoMembroComponent  {
   date: Date;
   datepipe: any;
 
-  constructor(
-    private membrosService: MembrosService,
-    private formbuilder: FormBuilder,
-    private router: Router,
-    private novoMembroService: MembrosService
-    ) { }
-    
+  constructor(private router: Router, private novoMembroService: MembrosService) { 
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -46,7 +37,7 @@ export class NovoMembroComponent  {
    });
   }
           
-  cadastrar() {
+  cadastrar(): void {
     if(this.form.valid){
       const novoMembro: NovoMembro = { 
         foto: this.file,
@@ -54,12 +45,12 @@ export class NovoMembroComponent  {
         nome: this.form.value.nome, 
         dataNascimento: this.form.value.dataNascimento 
       };
-      // this.novoMembroService.cadastraNovoMembro(novoMembro).subscribe(() => {
-        this.voltar()
-      // },
-      // (error) => {
-      //   console.log (error);
-      // });
+      this.novoMembroService.cadastraNovoMembro(novoMembro).subscribe(() => {
+        this.voltar();
+      },
+      (error) => {
+        console.log (error);
+      });
     }
   }
   
@@ -90,7 +81,7 @@ export class NovoMembroComponent  {
     }   
   }
 
-  validarDataNascimento(){
+  validarDataNascimento(): boolean {
     const dtNascimento = new Date(this.form.get('dataNascimento').value);
     const dtAtual = new Date();
     const idadeAnos: number = dtAtual.getFullYear() - dtNascimento.getFullYear();
@@ -98,37 +89,25 @@ export class NovoMembroComponent  {
     const dtNascimentoMais1 = dtNascimento.getTime();
     const dtAtualOffSet = dtAtual.getTime(); 
 
-    const days = this.days_between(dtAtual, dtNascimento);
-
     if(dtNascimento.getUTCDate() == dtAtual.getUTCDate()){
-      this.mensagemErroDtNascimento = "Data de nascimento não pode ser igual a hoje"
+      this.mensagemErroDtNascimento = "Data de nascimento não pode ser igual a hoje";
       return true;
     }
     
     if(dtNascimentoMais1 > dtAtualOffSet){
-      this.mensagemErroDtNascimento = "Data de nascimento deve ser menor que hoje"
+      this.mensagemErroDtNascimento = "Data de nascimento deve ser menor que hoje";
       return true;
     }
 
     if(idadeAnos > 18){
-      this.mensagemErroDtNascimento = "Membro deve ter menos que 18 anos"
+      this.mensagemErroDtNascimento = "Membro deve ter menos que 18 anos";
       return true;
     }
 
     return false;
   }
 
-  days_between(date1, date2) {
-
-    const ONE_DAY = 1000 * 60 * 60 * 24;
-
-    const differenceMs = Math.abs(date1 - date2);
-
-    return Math.round(differenceMs / ONE_DAY);
-
-  }
-
-  voltar(){
+  voltar(): void {
     this.router.navigate(['/pages/lista-membros']);
   }
 }
