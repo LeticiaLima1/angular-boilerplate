@@ -1,0 +1,51 @@
+<div class=container>
+    <div class="row w-100">
+        <div class="col-md-8">
+            <div>
+                <img
+                class= "capa"
+                alt="Imagem de uma família para as boas vindas"
+                src="assets/img/home.jpg"
+                />
+            </div>
+            <div>
+                <p class="frase">Seu time <br>em harmonia.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p class="titulo">RIOTT</p>
+            <p class="subtitulo">Controle as tarefas e mesada dos seus filhos para manter a casa em harmonia.</p>
+
+            <div>
+                <form (ngSubmit)="login()">
+
+                    <label for="email"></label>
+                    <input
+                    type="email"
+                    placeholder="E-mail"
+                    id="email"
+                    [(ngModel)]="email"
+                    name="email"
+                    class="campos-email"
+                    />
+
+                    <label for="senha"></label>
+                    <input
+                    type="password"
+                    placeholder="Senha"
+                    id="senha"
+                    [(ngModel)]="senha"
+                    class="campos-senha"
+                    name="senha"
+                    />
+
+                    <input type="submit"
+                    class="campos-botao"
+                    value ="Entrar">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+

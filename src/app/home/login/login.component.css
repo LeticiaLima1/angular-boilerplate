@@ -1,0 +1,48 @@
+.capa {
+    position: absolute;
+    width: 55%;
+    left: 0%;
+}
+
+.frase{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 83px;
+    color: #ffffff;
+    position: absolute;
+    top: 60%;
+}
+
+.titulo{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size:  56px;
+    text-align: center;
+    color:#006D77;
+    margin-top: 28%;
+}
+
+.subtitulo{
+    color: #7c8d93 ;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    width: auto;
+    text-align: justify;
+}
+
+form input{
+    margin: 20px;
+    width: 306px;
+    border: 1px solid #7C8D93;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 13px;
+}
+
+.campos-botao{
+    text-align: center;
+    color: #ffffff;
+    background-color: #006d77;
+}
+

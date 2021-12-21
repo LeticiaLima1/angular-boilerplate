@@ -1,0 +1,36 @@
+<div class="lista">
+        <mat-card-title>Atividades</mat-card-title>
+        <div>
+            <button mat-raised-button color="primary" class="campos-botao" [routerLink]="['atividade-cadastrar']">
+                  Cadastrar nova atividade
+            </button>
+        </div>
+      
+        <div *ngFor="let atividade of listaAtividades" class="col-12">
+          <mat-card class="example-card">
+            <div class="row">
+                
+              <div class="col-8">
+                <div class="row">
+                    <mat-card-subtitle>Atividade:</mat-card-subtitle>
+                    <mat-card-content>{{atividade.descricao}}</mat-card-content>
+                </div>
+
+                  
+              </div>
+              <div class="col-3">
+                <div class="row">
+                  <div class="col-4">
+                    <button mat-stroked-button type="submit" color="accent" [routerLink]="['atividade-excluir']">Excluir</button>
+                  </div>
+                  <div class="col-4">
+                    <button mat-raised-button type="submit" color="primary" [routerLink]="['atividade-editar']">Editar</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+        
