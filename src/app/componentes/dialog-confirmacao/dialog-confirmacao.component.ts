@@ -15,13 +15,12 @@ export class DialogConfirmacaoComponent {
     this.corpo = pergunta;
   }
 
-
   cancelar(): void{
     this.dialogRef.close(true);
   }
 
   fechar(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
 }

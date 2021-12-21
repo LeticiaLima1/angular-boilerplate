@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Atividade } from 'src/app/models/atividade';
+import { DialogCadastrarAtividadeComponent } from './dialog-cadastrar-atividade/dialog-cadastrar-atividade.component';
 
 @Component({
   selector: 'app-atividades',
@@ -7,6 +9,8 @@ import { Atividade } from 'src/app/models/atividade';
   styleUrls: ['./atividades.component.css']
 })
 export class AtividadesComponent {
+
+  constructor(private dialog: MatDialog) {}  
 
   listaAtividades: Atividade[] = [
     {
@@ -21,5 +25,18 @@ export class AtividadesComponent {
       descricao: 'Guardar sapatos' ,
       
     }
-  ]
+  ];
+
+  cadastrarAtividade(): void{
+    this.openDialogCadastrarAtividade();
+
+  }
+
+  openDialogCadastrarAtividade(): void {
+    this.dialog.open(DialogCadastrarAtividadeComponent, {
+      width: '500px',
+      height: '500px'
+    });
+  }
 }
+
