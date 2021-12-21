@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Atividade } from 'src/app/models/atividade';
 import { DialogCadastrarAtividadeComponent } from './dialog-cadastrar-atividade/dialog-cadastrar-atividade.component';
+import { DialogEditarAtividadeComponent } from './dialog-editar-atividade/dialog-editar-atividade.component';
+import { DialogExcluirAtividadeComponent } from './dialog-excluir-atividade/dialog-excluir-atividade.component';
 
 @Component({
   selector: 'app-atividades',
@@ -38,5 +40,20 @@ export class AtividadesComponent {
       height: '500px'
     });
   }
+
+  openDialogExcluirAtividade(): void {
+    this.dialog.open(DialogExcluirAtividadeComponent, {
+      width: '300px',
+    });
+  }
+
+  openDialogEditarAtividade(atividade: Atividade): void {
+    this.dialog.open(DialogEditarAtividadeComponent, {
+      width: '400px',
+      height: '400px',
+      data: atividade
+    });
+  }
+
 }
 

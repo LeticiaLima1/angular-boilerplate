@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{titulo}}</h1>
+<div mat-dialog-content>{{corpo}}</div>
+<div >
+
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Descrição da atividade</mat-label>
+        <input
+        matInput
+        [(ngModel)]="atividade.descricao"
+        type="text" 
+        required>
+      </mat-form-field>
+      </div>
+
+      <div class="row">
+          <button  mat-stroked-button  color="primary" class="campos-botao" (click)="editarAtividade()">Salvar edição</button>
+          <button mat-stroked-button  color="warn" (click)="onNoClick()">
+            Cancelar
+          </button>
+      </div>
+</div>

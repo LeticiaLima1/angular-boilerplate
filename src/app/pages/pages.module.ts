@@ -7,12 +7,12 @@ import { CabecalhoModule } from "../componentes/cabecalho/cabecalho.module";
 import { NovoMembroComponent } from './lista-membros/novo-membro/novo-membro.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatListModule} from '@angular/material/list';
-import {MatCardModule} from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 import { CartaoModule } from "../componentes/cartao/cartao.module";
 import { MembroComponent } from "../componentes/membro/membro.component";
 import { MensagemModule } from "../componentes/mensagem/mensagem.module";
@@ -27,6 +27,8 @@ import { DialogEditarComponent } from "../componentes/dialog-editar/dialog-edita
 import { DialogCadastrarComponent } from "../componentes/dialog-cadastrar/dialog-cadastrar.component";
 import { DialogConfirmacaoComponent } from "../componentes/dialog-confirmacao/dialog-confirmacao.component";
 import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar-atividade/dialog-cadastrar-atividade.component";
+import { DialogExcluirAtividadeComponent } from "./atividades/dialog-excluir-atividade/dialog-excluir-atividade.component";
+import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-atividade/dialog-editar-atividade.component";
 
 @NgModule({
 	imports: [
@@ -43,7 +45,8 @@ import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar
 		MatListModule,
 		MatCardModule,
 		CartaoModule,
-		MensagemModule
+		MensagemModule,
+		
 	],
 	declarations: [
 		PagesComponent,
@@ -60,7 +63,9 @@ import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar
 		DialogEditarComponent,
 		DialogCadastrarComponent,
 		DialogConfirmacaoComponent,
-		DialogCadastrarAtividadeComponent
+		DialogCadastrarAtividadeComponent,
+		DialogExcluirAtividadeComponent,
+		DialogEditarAtividadeComponent
 	],
 	providers: [],
 	entryComponents: [ 
@@ -69,6 +74,8 @@ import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar
 		DialogEditarComponent, 
 		DialogCadastrarComponent, 
 		DialogConfirmacaoComponent,
-		DialogCadastrarAtividadeComponent ]
+		DialogCadastrarAtividadeComponent,
+		DialogExcluirAtividadeComponent,
+		DialogEditarAtividadeComponent  ]
 })
 export class PagesModule { }
