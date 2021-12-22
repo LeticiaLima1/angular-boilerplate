@@ -4,6 +4,7 @@ import { DialogCadastrarComponent } from 'src/app/componentes/dialog-cadastrar/d
 import { DialogEditarComponent } from 'src/app/componentes/dialog-editar/dialog-editar.component';
 import { Membro } from 'src/app/models/membros';
 import { DialogComponent } from '../../componentes/dialog/dialog.component';
+import { MembrosService } from '../membros.service';
 
 
 const larguraDialogs = '250px';
@@ -16,14 +17,21 @@ const larguraDialogs = '250px';
 export class ListaMembrosComponent implements OnInit{
 
   listaMembros: Membro[];
+  service: MembrosService;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private membroService: MembrosService) {
+    this.service = membroService;
+  }
 
   ngOnInit(): void {
     this.preencheListaMembros();
   }
 
   preencheListaMembros(): void {
+    console.log(this.membroService.searchHeroes());
+      
+
+
 
     // this.listaMembros =  [
     //   {

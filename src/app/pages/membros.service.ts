@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { TokenService } from '../autenticacao/token.service';
 import { environment } from '../environments/environment';
 import { Membro, Membros, NovoMembro } from '../models/membros';
+import { catchError } from 'rxjs/operators';
+import { HandleError, HttpErrorHandler } from './http-error-handler.service';
+
 
 
 const API = environment.apiURL;
@@ -14,7 +17,15 @@ const NOT_MODIFIED = '304';
 })
 export class MembrosService {
 
-  constructor(private http: HttpClient, private tokenService:TokenService) { }
+  private handleError: HandleError;
+
+  constructor(
+    private http: HttpClient,
+    private tokenService:TokenService,
+    private httpErrorHandler: HttpErrorHandler) {
+      this.handleError = httpErrorHandler.createHandleError('HeroesService');
+     }
+
 
   // buscarMembros(){
     // {
@@ -33,14 +44,14 @@ export class MembrosService {
   //   return this.http.get<Membros>(`${API}/${nomeDoUsuario}/membros`);
   // }
 
-  searchHeroes(term: string): Observable<Membro[]> {
-    term = term.trim();
+  searchHeroes(): Observable<Membro[]> {
+    // term = term.trim();
 
     // Add safe, URL encoded search parameter if there is a search term
-    const options = term ?
-     { params: new HttpParams().set('name', term) } : {};
+    // const options = term ?
+    //  { params: new HttpParams().set('name', term) } : {};
 
-    return this.http.get<Membro[]>(this.heroesUrl, options)
+    return this.http.get<Membro[]>('http://localhost:4444/v1/user/members')
       .pipe(
         catchError(this.handleError<Membro[]>('searchHeroes', []))
       );
