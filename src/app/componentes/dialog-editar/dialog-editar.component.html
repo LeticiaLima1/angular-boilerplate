@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>{{titulo}}</h1>
+<div mat-dialog-content>{{corpo}}</div>
+<div class="example-full-width" *ngIf="!preview; else previewImage">
+  <button
+  type="button"
+  (click)="fileInput.click()"
+  class="btn btn-primary">
+  <i class="fa fa-image fa-4x align-middle"></i>
+</button>
+<input #fileInput
+type="file" 
+hidden 
+accept="image/png, image/jpg"
+(change)="gravaArquivo($event.target)"/>
+<div 
+id='lbError' 
+class='warning'>
+</div>
+</div>
+
+<ng-template #previewImage>
+  <app-membro
+  [url]="preview" 
+  title="Preview">
+</app-membro>
+</ng-template>
+<mat-form-field appearance="fill">
+  <mat-label>Nome do membro</mat-label>
+  <input
+  matInput
+  [(ngModel)]="membro.nome"
+  type="text" 
+  required>
+</mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-label>Data de Nascimento</mat-label>
+  <input 
+    matInput
+    [(ngModel)]="membro.dataNascimento"
+    required>
+</mat-form-field><mat-form-field appearance="fill">
+  <mat-label>Valor da mesada</mat-label>
+  <input 
+    matInput 
+    [(ngModel)]="membro.valorMesada"
+    type="number"
+    required
+    min="0"
+    step=".01">
+</mat-form-field>
+<div mat-dialog-actions >
+  <div class="row">
+    <button mat-raised-button color="primary" class="campos-botao" (click)="editarMembro()">
+      Salvar edição
+    </button>
+  </div>
+  <div class="row">
+    <button mat-stroked-button  color="warn" (click)="onNoClick()">
+      Cancelar
+    </button>
+  </div>
+</div>
