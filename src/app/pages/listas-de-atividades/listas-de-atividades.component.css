@@ -1,0 +1,40 @@
+.card {
+  /* max-width: 400px; */
+  margin-bottom: 8px;
+  padding: 20px;
+}
+
+.tela{
+  padding: 20px;
+}
+
+@import '~@angular/material/theming';
+
+.clickable {
+  cursor: pointer;
+  &:hover {
+    @include mat-elevation(8);
+  }
+}
+
+footer {
+  display: inline-block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  margin-bottom: 8px;
+  margin-top: 30%;
+  /* padding: 20px; */
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  height: auto;
+  margin-top: 32%;
+
+  margin-bottom: 8px;
+  /* padding: 20px; */
+}

@@ -1,4 +1,82 @@
-<p>listas-de-atividades works!</p>
-<div class="col-4">
-    <button mat-stroked-button type="submit" color="accent">Gerenciar Listas</button>
+<div class="row tela">
+  
+  <div class="col-3">
+    <mat-card-title>Listas:</mat-card-title>
+    <div *ngFor="let membro of listMembros">
+      <mat-card class="card clickable" (click)="onCardClick(membro)" matRipple>
+        <div class="row">
+          <div class="col-3">
+            <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+          </div>
+          <div class="col-9">
+            <mat-card-content>{{membro.nome}}</mat-card-content>
+            <mat-card-subtitle>Mesada: {{membro.valorMesada | currency : 'BRL'}}</mat-card-subtitle>
+            <mat-card-subtitle>Desconto: {{membro.valorDescontos | currency : 'BRL'}}</mat-card-subtitle>
+            <mat-card-subtitle>Total: {{membro.valorTotal | currency : 'BRL'}}</mat-card-subtitle>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <footer>
+      <div class="col-3">
+  
+      <mat-card class="card clickable" (click)="onCardClick()" matRipple>
+        <div class="row">
+          
+          <div class="col-9">
+            <mat-card-content>Gerenciar lista</mat-card-content>
+          </div>
+        </div>
+      </mat-card>
+      </div>
+    </footer>
   </div>
+  
+  <div class="col-9">
+    <mat-card-title>Lista:</mat-card-title>
+    <div *ngFor="let atividade of membroEscolhido.atividades">
+      <mat-card class="card">
+        <div class="row">
+          <div class="col-8">
+            <mat-card-subtitle>Descrição da atividade</mat-card-subtitle>
+            <mat-card-content>{{atividade.descricao}}</mat-card-content>
+          </div>
+          <div class="col-2">
+            <mat-card-subtitle>Valor:</mat-card-subtitle>
+            <mat-card-content>{{atividade.valor | currency : 'BRL'}}</mat-card-content>
+          </div>
+          <div class="col-2">
+            <mat-card-actions>
+              <button mat-raised-button color="warn" *ngIf="atividade.status">x Faltou</button>
+              <button mat-stroked-button color="warn" *ngIf="!atividade.status">Marcar falta</button>
+            </mat-card-actions>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+      <mat-card class="card footer">
+        <div class="row">
+        <div class="col-2">
+          <mat-card-subtitle>Total de faltas</mat-card-subtitle>
+          <mat-card-content>12</mat-card-content>
+        </div>
+      <div class="col-2">
+        <mat-card-subtitle>Mesada</mat-card-subtitle>
+        <mat-card-content>{{12| currency : 'BRL'}}</mat-card-content>
+      </div>
+      <div class="col-2">
+        <mat-card-subtitle>Descontos</mat-card-subtitle>
+        <mat-card-content>{{15 | currency : 'BRL'}}</mat-card-content>
+      </div>
+      <div class="col-2">
+        <mat-card-subtitle>Total</mat-card-subtitle>
+        <mat-card-content>{{300 | currency : 'BRL'}}</mat-card-content>
+      </div>
+    </div>
+      </mat-card>
+      
+  </div>
+
+  
+
+</div>

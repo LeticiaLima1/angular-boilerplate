@@ -29,6 +29,7 @@ import { DialogConfirmacaoComponent } from "../componentes/dialog-confirmacao/di
 import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar-atividade/dialog-cadastrar-atividade.component";
 import { DialogExcluirAtividadeComponent } from "./atividades/dialog-excluir-atividade/dialog-excluir-atividade.component";
 import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-atividade/dialog-editar-atividade.component";
+import { DialogConfirmacaoListaComponent } from "./listas-de-atividades/dialog-confirmacao-lista/dialog-confirmacao-lista.component";
 
 @NgModule({
 	imports: [
@@ -45,8 +46,7 @@ import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-ativi
 		MatListModule,
 		MatCardModule,
 		CartaoModule,
-		MensagemModule,
-		
+		MensagemModule
 	],
 	declarations: [
 		PagesComponent,
@@ -65,7 +65,8 @@ import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-ativi
 		DialogConfirmacaoComponent,
 		DialogCadastrarAtividadeComponent,
 		DialogExcluirAtividadeComponent,
-		DialogEditarAtividadeComponent
+		DialogEditarAtividadeComponent,
+		DialogConfirmacaoListaComponent
 	],
 	providers: [],
 	entryComponents: [ 
@@ -76,6 +77,7 @@ import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-ativi
 		DialogConfirmacaoComponent,
 		DialogCadastrarAtividadeComponent,
 		DialogExcluirAtividadeComponent,
-		DialogEditarAtividadeComponent  ]
+		DialogEditarAtividadeComponent,
+		DialogConfirmacaoListaComponent  ]
 })
 export class PagesModule { }

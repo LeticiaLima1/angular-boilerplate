@@ -16,6 +16,36 @@ export class MembrosService {
 
   constructor(private http: HttpClient, private tokenService:TokenService) { }
 
+  // buscarMembros(){
+    // {
+    //   "status": true,
+    //   "date": "2021-12-22T15:22:04.979Z",
+    //   "data": [
+    //     {
+    //       "id": "61c33bf505f8080034006306",
+    //       "name": "Leticia Lima",
+    //       "photo": "460f35cc4239e94cf64635f7209938fb-1640184821119-212695775.jpeg",
+    //       "birthdate": "11/02/2004",
+    //      "allowance": 1000.5
+    //     }
+    //   ]
+    // }
+  //   return this.http.get<Membros>(`${API}/${nomeDoUsuario}/membros`);
+  // }
+
+  searchHeroes(term: string): Observable<Membro[]> {
+    term = term.trim();
+
+    // Add safe, URL encoded search parameter if there is a search term
+    const options = term ?
+     { params: new HttpParams().set('name', term) } : {};
+
+    return this.http.get<Membro[]>(this.heroesUrl, options)
+      .pipe(
+        catchError(this.handleError<Membro[]>('searchHeroes', []))
+      );
+  }
+
   listaDoUsuario(nomeDoUsuario:string):Observable<Membros>{
     return this.http.get<Membros>(`${API}/${nomeDoUsuario}/membros`);
   }

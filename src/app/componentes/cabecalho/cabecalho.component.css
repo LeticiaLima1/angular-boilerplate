@@ -1,0 +1,15 @@
+.titulo{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size:  56px;
+    text-align: center;
+    color:#006D77;
+    padding: 2%;
+}
+
+.botoes{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size:  25px;
+    padding: 2%;
+}
