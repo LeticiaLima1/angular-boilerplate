@@ -2,33 +2,33 @@
 <div mat-dialog-content>{{corpo}}</div>
 <div class="example-full-width" *ngIf="!preview; else previewImage">
   <button
-  type="button"
-  (click)="fileInput.click()"
-  class="btn btn-primary">
-  <i class="fa fa-image fa-4x align-middle"></i>
-</button>
-<input #fileInput
-type="file" 
-hidden 
-accept="image/png, image/jpg"
-(change)="gravaArquivo($event.target)"/>
-<div 
-id='lbError' 
-class='warning'>
-</div>
+    type="button"
+    (click)="fileInput.click()"
+    class="btn btn-primary">
+    <i class="fa fa-image fa-4x align-middle"></i>
+  </button>
+  <input #fileInput
+    type="file" 
+    hidden 
+    accept="image/png, image/jpg"
+    (change)="gravaArquivo($event.target)"/>
+  <div 
+    id='lbError' 
+    class='warning'>
+  </div>
 </div>
 
 <ng-template #previewImage>
   <app-membro
-  [url]="preview" 
-  title="Preview">
-</app-membro>
+    [url]="preview" 
+    title="Preview">
+  </app-membro>
 </ng-template>
 <mat-form-field appearance="fill">
   <mat-label>Nome do membro</mat-label>
   <input
   matInput
-  [(ngModel)]="membro.nome"
+  [(ngModel)]="membro.name"
   type="text" 
   required>
 </mat-form-field>
@@ -36,13 +36,13 @@ class='warning'>
   <mat-label>Data de Nascimento</mat-label>
   <input 
     matInput
-    [(ngModel)]="membro.dataNascimento"
+    [(ngModel)]="membro.birthdate"
     required>
 </mat-form-field><mat-form-field appearance="fill">
   <mat-label>Valor da mesada</mat-label>
   <input 
     matInput 
-    [(ngModel)]="membro.valorMesada"
+    [(ngModel)]="membro.allowance"
     type="number"
     required
     min="0"

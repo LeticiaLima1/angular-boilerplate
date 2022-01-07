@@ -15,13 +15,15 @@ export class DialogComponent {
 
   corpo: string = 'Deseja realmente excluir esse membro?';
   membro: Membro;
-  membroService: MembrosService;
 
   constructor(
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public membroDialog: Membro) {
+    @Inject(MAT_DIALOG_DATA) public membroDialog: Membro,
+    public membroService: MembrosService
+    ) {
     this.membro = membroDialog;
+    
   }
 
   onNoClick(): void {
@@ -29,9 +31,17 @@ export class DialogComponent {
   }
 
   excluirMembro(): void{
-    // this.membroService.excluiMembro(this.membro.nome);
-    this.dialogRef.close();
-    this.openDialogSucesso('Membro excluído com sucesso!');
+    this.membroService.excluiMembro(this.membro.id).subscribe(
+        () => {
+          this.dialogRef.close(true);
+          this.openDialogSucesso('Membro excluído com sucesso!');
+        }, 
+        (error) => {
+          this.openDialogSucesso('Não foi possível excluir o membro');
+          console.log(error);
+        }
+      );
+
   }
   
   openDialogSucesso(texto: string): void {

@@ -1,6 +1,62 @@
-.example-card {
-    margin-bottom: 8px;
+.card {
+    margin: 2em ;
+    border-width: 0.1vh;
+    width: 88%;
+    padding: 1.5%;
+    box-shadow: none !important;
+    transition: none !important;
   }
+
 .lista {
-    padding: 10px;
+    padding: 40px;
+}
+
+.dados{
+  font-size: 17px;
+}
+
+.teste{
+  margin-left: 80%;
+}
+.campos-botao{
+  text-align: center;
+  color: #ffffff;
+  background-color: #006d77;
+  margin-left: 74%;
+  display: center;
+}
+
+.b-excluir{
+  text-align: center;
+  color: #E29578;
+  border-color: #E29578;
+  border-width: 0.2vh;
+  margin: 1em;
+  left: auto;
+}
+
+.b-editar{
+  text-align: center;
+  color: #ffffff;
+  background-color: #83C5BE;
+  margin: 1em;
+  left: auto;
+  box-shadow: none !important;
+  transition: none !important;
+
+}
+
+.b-lista{
+  text-align: center;
+  color: #ffffff;
+  background-color: #006d77;
+  margin: 1em;
+  box-shadow: none !important;
+  transition: none !important;
+  right: 18%;
+
+ 
+
+
+
 }

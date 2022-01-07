@@ -1,6 +1,7 @@
 import { AutenticacaoService } from './../../autenticacao/autenticacao.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from './../../autenticacao/token.service';
 
 
 @Component({
@@ -15,11 +16,13 @@ export class LoginComponent {
 
     constructor(
         private authService:AutenticacaoService, 
-        private router:Router
+        private router:Router,
+        private tokenService:TokenService 
     ) {}
 
     login(): void {
-        this.authService.autenticar(this.email, this.senha).subscribe(()=> {
+        this.authService.autenticar(this.email, this.senha).subscribe((retorno)=> {
+            this.tokenService.salvaToken(retorno.data);
             this.router.navigate(['pages/listas-de-atividades']);
             }, 
         (error) => {

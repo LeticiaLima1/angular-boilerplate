@@ -1,6 +1,125 @@
-<h1 mat-dialog-title>{{titulo}}</h1>
-<div mat-dialog-content>{{corpo}}</div>
-<div >
+<h1 mat-dialog-title class="titulo">Cadastrar novo membro</h1>
+<div mat-dialog-content class="subtitulo">
+    Insira os dados abaixo para cadastrar um novo membro ao RIOTT.
+</div>
+<div>
+  <form class="example-form" [formGroup]="form" (ngSubmit)="cadastrar()">
+      <div class="row">
+    <div *ngIf="!preview; else previewImage"> 
+          <button
+              type="button"
+              (click)="fileInput.click()">
+              <div class="row">
+                  <i class="fa fa-file fa-4x icone col-4"></i>
+                  <p class="col-8"> Arraste ou clique aqui para fazer o upload da foto do usuário.</p>
+
+              </div>
+            </button>
+            <input #fileInput
+            type="file" 
+            hidden 
+            accept="image/png, image/jpg"
+            (change)="gravaArquivo($event.target)"/>
+            <div 
+            id='lbError' 
+            class='warning'>
+        </div>
+    </div>
+    
+   <ng-template #previewImage>
+          <app-membro
+              [url]="preview" 
+              title="Preview">
+          </app-membro>
+      </ng-template>
+    </div>
+  
+      <!--<mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nome do membro</mat-label>
+          <input 
+              matInput 
+              type="text" 
+              placeholder="Nome do membro" 
+              formControlName="nome"
+              [(ngModel)]="nome"
+              required
+              >
+              <app-mensagem
+                  *ngIf="form.get('nome')?.errors && form.get('nome')?.touched"
+                  mensagem="Nome obrigatório">
+              </app-mensagem>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Data de nascimento</mat-label>
+          <input 
+              matInput 
+              type="date" 
+              placeholder="Data de nascimento" 
+              formControlName="dataNascimento"
+              [(ngModel)]="dataNascimento"
+              required>
+              <app-mensagem
+                  *ngIf="form.get('dataNascimento')?.errors && form.get('dataNascimento')?.touched"
+                  mensagem="Data de Nascimento obrigatória">
+              </app-mensagem>
+              <app-mensagem
+                  *ngIf="validarDataNascimento()"
+                  mensagem="{{mensagemErroDtNascimento}}">
+              </app-mensagem>
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Valor da mesada</mat-label>
+          <input 
+              matInput 
+              type="number"
+              formControlName="valorMesada"
+              placeholder="Valor da mesada" 
+              [(ngModel)]="valorMesada"
+              required
+              min="0"
+              step=".01">
+              <app-mensagem
+                  *ngIf="form.get('valorMesada')?.errors && form.get('valorMesada')?.touched"
+                  mensagem="Valor da mesada é obrigatório">
+              </app-mensagem>
+              <app-mensagem
+                  *ngIf="form.get('valorMesada').value < 0"
+                  mensagem="Valor da mesada deve ser positivo">
+              </app-mensagem>
+      </mat-form-field>
+      
+        <div class="row ">
+          <button mat-raised-button type="submit" class="campos-botao">Cadastrar membro</button>
+        </div>
+
+        <div class="row col-6">
+           <button mat-raised-button class="botao-cancelar"  (click)="cancelar()">Cancelar</button>
+        </div> -->
+
+</form>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1 mat-dialog-title>{{titulo}}</h1>
+<div mat-dialog-content >{{corpo}}</div>
+<div>
   <form class="example-form" [formGroup]="form" (ngSubmit)="cadastrar()">
   
       <div class="example-full-width" *ngIf="!preview; else previewImage">
@@ -83,13 +202,14 @@
                   mensagem="Valor da mesada deve ser positivo">
               </app-mensagem>
       </mat-form-field>
-      <div class="row">
-        <div class="col-6">
-          <button mat-raised-button type="submit" color="primary">Cadastrar</button>
+      
+        <div class="row ">
+          <button mat-raised-button type="submit" class="campos-botao">Cadastrar membro</button>
         </div>
-        <div class="col-6">
-            <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+
+        <div class="row col-6">
+           <button mat-raised-button class="botao-cancelar"  (click)="cancelar()">Cancelar</button>
         </div>
-    </div>
+
 </form>
-</div>
+</div> -->

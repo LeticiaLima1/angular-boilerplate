@@ -1,43 +1,44 @@
 <div class="lista">
-  <mat-card-title>Membros:</mat-card-title>
   <div>
-      <button mat-raised-button color="primary">
-        <a class="nav-link" (click)="openDialogCadastrar()">Cadastrar Novo Membro</a>
-      </button>
+    <mat-card-title>Membros:
+    <button mat-raised-button color="primary" class="campos-botao">
+      <a (click)="openDialogCadastrar()">Cadastrar Novo Membro</a>
+    </button>
+    </mat-card-title>
   </div>
 
-  <div *ngFor="let membro of listMembros" class="col-12">
-    <mat-card class="example-card">
+  <div *ngFor="let membro of membros; index as i" class="col-12">
+    <mat-card  class="card">
       <div class="row">
           <div class="col-1">
             <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
         </div>
         <div class="col-8">
           <div class="row">
-            <div class="col-4">
+            <div class="col-4"> 
               <mat-card-subtitle>Membro:</mat-card-subtitle>
-              <mat-card-content>{{membro.nome}}</mat-card-content>
+              <p class="dados">{{membro.name}}</p>
             </div>
             <div class="col-4">
               <mat-card-subtitle>Data de nascimento:</mat-card-subtitle>
-              <mat-card-content>{{membro.dataNascimento}}</mat-card-content>
+              <p class="dados">{{membro.birthdate}}</p>
             </div>
             <div class="col-4">
               <mat-card-subtitle>Valor da mesada:</mat-card-subtitle>
-              <mat-card-content>{{membro.valorMesada | currency : 'BRL'}}</mat-card-content>
+              <p class="dados">{{membro.allowance | currency : 'BRL'}}</p>
             </div>
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-3" style="text-align: ;">
           <div class="row">
             <div class="col-4">
-              <button mat-stroked-button type="submit" color="accent" (click)="openDialog(membro)">Excluir</button>
+              <button mat-stroked-button type="submit" class="b-excluir" (click)="openDialog(membro, i)">Excluir</button>
             </div>
             <div class="col-4">
-              <button mat-raised-button type="submit" color="primary" (click)="openDialogEditar(membro)">Editar</button>
+              <button mat-raised-button type="submit" class="b-editar" (click)="openDialogEditar(membro)">Editar</button>
             </div>
             <div class="col-4">
-              <button mat-raised-button type="submit" color="basic" [routerLink]="['../listas-de-atividades']">Ver Lista</button>
+              <button mat-raised-button type="submit" class="b-lista" [routerLink]="['../listas-de-atividades']">Ver Lista</button>
             </div>
 
           </div>
@@ -45,5 +46,6 @@
       </div>
     </mat-card>
   </div>
+  
 </div>
   

@@ -1,26 +1,55 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DialogCadastrarComponent } from 'src/app/componentes/dialog-cadastrar/dialog-cadastrar.component';
 import { DialogEditarComponent } from 'src/app/componentes/dialog-editar/dialog-editar.component';
-import { Membro, MembroLista } from 'src/app/models/membros';
+import { Membro, MembroAPI, RespostaMembroAPI } from 'src/app/models/membros';
 import { DialogComponent } from '../../componentes/dialog/dialog.component';
+import { MembrosService } from '../membros.service';
 
 
-const larguraDialogs = '250px';
+const larguraDialogs = '100%';
 @Component({
   selector: 'app-lista-membros',
   templateUrl: './lista-membros.component.html',
   styleUrls: ['./lista-membros.component.css'],
 })
 
-export class ListaMembrosComponent{
+export class ListaMembrosComponent implements OnInit{
 
-  constructor(public dialog: MatDialog) {}
+  respostaAPI: RespostaMembroAPI;
+  membros: any;
 
-  openDialog(membro: Membro): void {
-    this.dialog.open(DialogComponent, {
+  constructor(public dialog: MatDialog, private membroService: MembrosService, public router: Router ) {}
+
+  ngOnInit(): void {
+    this.buscarLista();
+  }
+
+  buscarLista(): void{
+    this.membroService.buscarListaMembros()
+    .subscribe(
+      (resposta: RespostaMembroAPI) => {
+        this.respostaAPI = resposta;
+        this.membros =  resposta.data;
+      },
+      err => {
+        console.log("Error", err);
+      }
+    );
+  }
+  
+  openDialog(membro: MembroAPI, index: number): void {
+
+    const dialog = this.dialog.open(DialogComponent, {
       width: larguraDialogs,
       data: membro,
+    });
+    
+    dialog.afterClosed().subscribe(result => {
+      if(result && index > -1){
+        this.membros.splice(index, 1);
+      }
     });
   }
 
@@ -36,23 +65,6 @@ export class ListaMembrosComponent{
       width: larguraDialogs,
     });
   }
-
-  // eslint-disable-next-line @typescript-eslint/member-ordering
-  listMembros: MembroLista[] = [
-    {
-      foto: 'url',
-      nome: 'Ísis Lima',
-      dataNascimento: '06/10/2017',
-      valorMesada: 300.00,
-    },
-    {
-      foto: 'url',
-      nome: 'Alice Lima',
-      dataNascimento: '04/04/2014',
-      valorMesada: 500.50,
-    }
-  ]
- 
 }
 
 
