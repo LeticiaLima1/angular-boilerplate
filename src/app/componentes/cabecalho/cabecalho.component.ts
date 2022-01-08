@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/autenticacao/usuario/usuario.service';
 
@@ -13,7 +13,7 @@ export class CabecalhoComponent {
 
   constructor(private usuarioService: UsuarioService, private router: Router ) { }
 
-  logout(){
+  logout(): void{
     this.usuarioService.logout();
     this.router.navigate(['']);
   }

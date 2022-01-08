@@ -2,7 +2,7 @@ import { Usuario } from './usuario';
 import { TokenService } from './../token.service';
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,27 +20,27 @@ export class UsuarioService {
     }
    }
 
-  private decodificaJWT() {
+  private decodificaJWT(): void {
     const token = this.tokenService.retornaToken();
-    const usuario = jwt_decode(token) as Usuario;
+    const usuario = jwt_decode(token) ;
     this.usuarioSubject.next(usuario);
   }
 
-  retornaUsuario() {
+  retornaUsuario(): Observable<any> {
     return this.usuarioSubject.asObservable();
   }
 
-  salvaToken(token: string){
+  salvaToken(token: string): void{
     this.tokenService.salvaToken(token);
     this.decodificaJWT();
   }
 
-  logout(){
+  logout(): void{
     this.tokenService.excluiToken();
     this.usuarioSubject.next({});
   }
 
-  estaLogado(){
+  estaLogado(): boolean{
     return this.tokenService.possuiToken();
   }
 
