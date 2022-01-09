@@ -2,7 +2,7 @@
   <div>
         <mat-card-title>Atividades
             <button mat-raised-button color="primary" class="campos-botao">
-               <a (click)="cadastrarAtividade()">Cadastrar nova atividade</a>
+               <a (click)="openDialogCadastrarAtividade()">Cadastrar nova atividade</a>
             </button>
           </mat-card-title>
         </div>
@@ -15,7 +15,7 @@
               <div class="col-10">
                 <div class="row">
                     <mat-card-subtitle>Descrição da atividade:</mat-card-subtitle>
-                    <p class="dados">{{atividade.descricao}}</p>
+                    <p class="dados">{{atividade.description}}</p>
                 </div>
 
                   
@@ -23,7 +23,7 @@
               <div class="col-2">
                 <div class="row">
                   <div class="col-4">
-                    <button mat-stroked-button type="submit" class="b-excluir" (click)="openDialogExcluirAtividade()">Excluir</button>
+                    <button mat-stroked-button type="submit" class="b-excluir" (click)="openDialogExcluirAtividade(atividade)">Excluir</button>
                   </div>
                   <div class="col-4">
                     <button mat-raised-button type="submit" class="b-editar" (click)="openDialogEditarAtividade(atividade)">Editar</button>

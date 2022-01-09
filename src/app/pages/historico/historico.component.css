@@ -1,0 +1,58 @@
+.lista{
+    padding: 40px;
+}
+
+.titulo{
+    padding-bottom: 20px;
+}
+
+.subtitulo{
+    font-size: 16px;
+    text-align: justify;
+    width: 306px;
+    margin-left: 40%;
+    margin-top: 5%;
+}
+
+.dados{
+    font-weight: 500;
+    font-size: 16px;
+    color: #3B4244
+}
+
+
+.card {
+    border-width: 0.1vh;
+    width: 88%;
+    padding: 1.5%;
+    margin-bottom: 2em;
+    box-shadow: none !important;
+    transition: none !important;
+  }
+
+
+ .mouse:hover, .mouse:active .image:hover, .image:active{
+    border-color: #83C5BE;
+    border-right-width: 20px;
+}
+
+.image{
+    border-radius: 50%;
+    width: 25%;
+    height: 25%;
+    margin-bottom: 2%;
+}
+	
+
+.campos-botao{
+    text-align: center;
+    color: #ffffff;
+    background-color: #006d77;
+    margin-bottom: 1vh;
+    justify-content: center;
+    margin-left: 40%;
+    margin-top: 1%;
+
+}
+  
+

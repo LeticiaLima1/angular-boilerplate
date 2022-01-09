@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>{{titulo}}</h1>
-<div mat-dialog-content>{{corpo}}</div>
+<h1 mat-dialog-title class="titulo">{{titulo}}</h1>
+<div mat-dialog-content class="subtitulo">{{corpo}}</div>
 <div >
-  <form class="example-form" [formGroup]="form">
+  <form [formGroup]="form">
 
     <div class="row">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Descreva a atividade</mat-label>
+      <mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+        <mat-label class="c-itens" >Descreva a atividade</mat-label>
           <textarea 
             rows="15"
             matInput 
@@ -21,13 +21,14 @@
         </mat-form-field>
     </div>
      
-      <div class="row">
-        <div class="col-6">
-          <button id="btnCadastrar" mat-raised-button color="primary" (click)="cadastrar()">Cadastrar</button>
-        </div>
-        <div class="col-6">
-          <button id="btnCancelar" mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
-        </div>
-      </div>
-  </form>
+
+<div class="row">
+  <button mat-raised-button color="primary" class="campos-botao" (click)="cadastrar()">
+    Adicionar atividade
+  </button>
+</div>
+<div class="row">
+  <button mat-stroked-button  class="botao-cancelar" (click)="cancelar()">
+    Cancelar
+  </button>
 </div>

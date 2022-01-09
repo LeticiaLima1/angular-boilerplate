@@ -3,40 +3,46 @@
     Insira os dados abaixo para cadastrar um novo membro ao RIOTT.
 </div>
 <div>
-  <form class="example-form" [formGroup]="form" (ngSubmit)="cadastrar()">
-      <div class="row">
-    <div *ngIf="!preview; else previewImage"> 
+  <form [formGroup]="form" (ngSubmit)="cadastrar()">
+         <div> 
           <button
+              class="botao-up"
               type="button"
               (click)="fileInput.click()">
+              
+              
+                <div class="row"   *ngIf="!preview">
+                  <i class="fa fa-file-o fa-3x icone col-3"></i>
+                  <p class="texto-up col-9"> Arraste ou <span style="text-decoration: underline;">clique aqui </span> para fazer o upload da <span style="font-weight: 500">foto do usuário</span> </p>
+                </div>
+              
+              
               <div class="row">
-                  <i class="fa fa-file fa-4x icone col-4"></i>
-                  <p class="col-8"> Arraste ou clique aqui para fazer o upload da foto do usuário.</p>
-
+                <div *ngIf="preview">
+                  <app-membro
+                    [url]="preview" 
+                    title="Preview">
+                  </app-membro>
+                  <p class="texto-up2 col-8"> Arraste ou <span style="text-decoration: underline;">clique aqui </span> para trocar a <span style="font-weight: 500">foto do usuário</span> </p>
+                </div>
               </div>
+
             </button>
             <input #fileInput
             type="file" 
             hidden 
+            required
             accept="image/png, image/jpg"
             (change)="gravaArquivo($event.target)"/>
             <div 
             id='lbError' 
             class='warning'>
         </div>
-    </div>
-    
-   <ng-template #previewImage>
-          <app-membro
-              [url]="preview" 
-              title="Preview">
-          </app-membro>
-      </ng-template>
-    </div>
+     </div>
   
-      <!--<mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Nome do membro</mat-label>
-          <input 
+      <mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+          <mat-label class="c-itens">Nome do membro</mat-label>
+          <input  
               matInput 
               type="text" 
               placeholder="Nome do membro" 
@@ -49,9 +55,9 @@
                   mensagem="Nome obrigatório">
               </app-mensagem>
       </mat-form-field>
-  
-      <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Data de nascimento</mat-label>
+
+      <mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+        <mat-label class="c-itens">Data de nascimento</mat-label>
           <input 
               matInput 
               type="date" 
@@ -69,8 +75,8 @@
               </app-mensagem>
       </mat-form-field>
   
-      <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Valor da mesada</mat-label>
+      <mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+        <mat-label >Valor da mesada</mat-label>
           <input 
               matInput 
               type="number"
@@ -94,122 +100,9 @@
           <button mat-raised-button type="submit" class="campos-botao">Cadastrar membro</button>
         </div>
 
-        <div class="row col-6">
-           <button mat-raised-button class="botao-cancelar"  (click)="cancelar()">Cancelar</button>
-        </div> -->
+        <div class="row">
+           <button mat-stroked-button class="botao-cancelar"  (click)="cancelar()">Cancelar</button>
+        </div> 
 
 </form>
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <h1 mat-dialog-title>{{titulo}}</h1>
-<div mat-dialog-content >{{corpo}}</div>
-<div>
-  <form class="example-form" [formGroup]="form" (ngSubmit)="cadastrar()">
-  
-      <div class="example-full-width" *ngIf="!preview; else previewImage">
-          <button
-              type="button"
-              (click)="fileInput.click()"
-              class="btn btn-primary">
-              <i class="fa fa-image fa-4x align-middle"></i>
-          </button>
-          <input #fileInput
-              type="file" 
-              hidden 
-              accept="image/png, image/jpg"
-              (change)="gravaArquivo($event.target)"/>
-          <div 
-              id='lbError' 
-              class='warning'>
-          </div>
-      </div>
-  
-      <ng-template #previewImage>
-          <app-membro
-              [url]="preview" 
-              title="Preview">
-          </app-membro>
-      </ng-template>
-  
-      <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Nome do membro</mat-label>
-          <input 
-              matInput 
-              type="text" 
-              placeholder="Nome do membro" 
-              formControlName="nome"
-              [(ngModel)]="nome"
-              required
-              >
-              <app-mensagem
-                  *ngIf="form.get('nome')?.errors && form.get('nome')?.touched"
-                  mensagem="Nome obrigatório">
-              </app-mensagem>
-      </mat-form-field>
-  
-      <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Data de nascimento</mat-label>
-          <input 
-              matInput 
-              type="date" 
-              placeholder="Data de nascimento" 
-              formControlName="dataNascimento"
-              [(ngModel)]="dataNascimento"
-              required>
-              <app-mensagem
-                  *ngIf="form.get('dataNascimento')?.errors && form.get('dataNascimento')?.touched"
-                  mensagem="Data de Nascimento obrigatória">
-              </app-mensagem>
-              <app-mensagem
-                  *ngIf="validarDataNascimento()"
-                  mensagem="{{mensagemErroDtNascimento}}">
-              </app-mensagem>
-      </mat-form-field>
-  
-      <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Valor da mesada</mat-label>
-          <input 
-              matInput 
-              type="number"
-              formControlName="valorMesada"
-              placeholder="Valor da mesada" 
-              [(ngModel)]="valorMesada"
-              required
-              min="0"
-              step=".01">
-              <app-mensagem
-                  *ngIf="form.get('valorMesada')?.errors && form.get('valorMesada')?.touched"
-                  mensagem="Valor da mesada é obrigatório">
-              </app-mensagem>
-              <app-mensagem
-                  *ngIf="form.get('valorMesada').value < 0"
-                  mensagem="Valor da mesada deve ser positivo">
-              </app-mensagem>
-      </mat-form-field>
-      
-        <div class="row ">
-          <button mat-raised-button type="submit" class="campos-botao">Cadastrar membro</button>
-        </div>
-
-        <div class="row col-6">
-           <button mat-raised-button class="botao-cancelar"  (click)="cancelar()">Cancelar</button>
-        </div>
-
-</form>
-</div> -->
+</div> 

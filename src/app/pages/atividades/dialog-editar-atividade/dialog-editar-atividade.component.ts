@@ -42,7 +42,7 @@ export class DialogEditarAtividadeComponent {
   
   openDialogSucesso(texto: string): void {
     this.dialog.open(DialogSucessoComponent, {
-      width: '250px',
+      width: '100%',
       data: texto,
     });
   }

@@ -1,12 +1,28 @@
-<h1 mat-dialog-title>{{titulo}}</h1>
-<div mat-dialog-content>{{corpo}}</div>
-<div class="example-full-width" *ngIf="!preview; else previewImage">
+<h1 mat-dialog-title class="titulo">{{titulo}}</h1>
+<div mat-dialog-content class="subtitulo">{{corpo}}</div>
+<div>
   <button
-    type="button"
-    (click)="fileInput.click()"
-    class="btn btn-primary">
-    <i class="fa fa-image fa-4x align-middle"></i>
+      class="botao-up"
+      type="button"
+      (click)="fileInput.click()">
+      <div class="row">
+        <i 
+          *ngIf="!preview" 
+          class="fa fa-file-o fa-3x icone col-3">
+        </i>
+
+        <div>
+          <app-membro
+            *ngIf="preview"
+            [url]="preview" 
+            title="Preview">
+          </app-membro>
+          <p class="col-9 texto-up texto-up2"> Arraste ou <span style="text-decoration: underline;">clique aqui </span>  para fazer o upload da <span style="font-weight: 500">foto do usuário</span> </p>
+        </div>
+      </div>
   </button>
+
+
   <input #fileInput
     type="file" 
     hidden 
@@ -18,28 +34,28 @@
   </div>
 </div>
 
-<ng-template #previewImage>
-  <app-membro
-    [url]="preview" 
-    title="Preview">
-  </app-membro>
-</ng-template>
-<mat-form-field appearance="fill">
-  <mat-label>Nome do membro</mat-label>
+<div class="row">
+<mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+  <mat-label class="c-itens">Nome do membro</mat-label>
   <input
   matInput
   [(ngModel)]="membro.name"
   type="text" 
   required>
 </mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Data de Nascimento</mat-label>
+
+
+<mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+  <mat-label class="c-itens">Data de Nascimento</mat-label>
   <input 
     matInput
     [(ngModel)]="membro.birthdate"
     required>
-</mat-form-field><mat-form-field appearance="fill">
-  <mat-label>Valor da mesada</mat-label>
+</mat-form-field>
+  
+
+<mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+  <mat-label class="c-itens">Valor da mesada</mat-label>
   <input 
     matInput 
     [(ngModel)]="membro.allowance"
@@ -48,6 +64,8 @@
     min="0"
     step=".01">
 </mat-form-field>
+</div>
+
 <div mat-dialog-actions >
   <div class="row">
     <button mat-raised-button color="primary" class="campos-botao" (click)="editarMembro()">
@@ -55,7 +73,7 @@
     </button>
   </div>
   <div class="row">
-    <button mat-stroked-button  color="warn" (click)="onNoClick()">
+    <button mat-stroked-button  class="botao-cancelar" (click)="onNoClick()">
       Cancelar
     </button>
   </div>

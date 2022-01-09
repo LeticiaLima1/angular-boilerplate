@@ -18,7 +18,7 @@ const larguraDialogs = '100%';
 export class ListaMembrosComponent implements OnInit{
 
   respostaAPI: RespostaMembroAPI;
-  membros: any;
+  membros: MembroAPI[] = [];
 
   constructor(public dialog: MatDialog, private membroService: MembrosService, public router: Router ) {}
 
@@ -30,8 +30,12 @@ export class ListaMembrosComponent implements OnInit{
     this.membroService.buscarListaMembros()
     .subscribe(
       (resposta: RespostaMembroAPI) => {
+        this.membros = [];
         this.respostaAPI = resposta;
-        this.membros =  resposta.data;
+        resposta.data.forEach(membro => {
+          membro.photo = 'http://localhost:4444/'+membro.photo;
+          this.membros.push(membro);
+        });
       },
       err => {
         console.log("Error", err);
@@ -39,30 +43,38 @@ export class ListaMembrosComponent implements OnInit{
     );
   }
   
-  openDialog(membro: MembroAPI, index: number): void {
-
+  openDialog(membro: MembroAPI): void {
     const dialog = this.dialog.open(DialogComponent, {
       width: larguraDialogs,
       data: membro,
     });
-    
     dialog.afterClosed().subscribe(result => {
-      if(result && index > -1){
-        this.membros.splice(index, 1);
+      if(result){
+        this.buscarLista();
       }
     });
   }
 
   openDialogEditar(membro: Membro): void {
-    this.dialog.open(DialogEditarComponent, {
+    const dialog = this.dialog.open(DialogEditarComponent, {
       width: larguraDialogs,
       data: membro,
+    });
+    dialog.afterClosed().subscribe(result => {
+      if(result){
+        this.buscarLista();
+      }
     });
   }
 
   openDialogCadastrar(): void {
-    this.dialog.open(DialogCadastrarComponent, {
+    const dialog = this.dialog.open(DialogCadastrarComponent, {
       width: larguraDialogs,
+    });
+    dialog.afterClosed().subscribe(result => {
+      if(result){
+        this.buscarLista();
+      }
     });
   }
 }

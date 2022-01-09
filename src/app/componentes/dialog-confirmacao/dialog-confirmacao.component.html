@@ -1,13 +1,15 @@
-<div mat-dialog-content>{{corpo}}</div>
-<div mat-dialog-actions >
-  <div class="row">
-    <button mat-raised-button color="primary" class="campos-botao" (click)="cancelar()">
-      Sim
-    </button>
-  </div>
-  <div class="row">
-    <button mat-raised-button color="primary" class="campos-botao" (click)="fechar()">
-      Não
-    </button>
-  </div>
+<div class="conteudo">
+
+  <i class="fa fa-exclamation-circle fa-3x icone "></i>
+  <div mat-dialog-content class="titulo">{{corpo}}</div>
+      
+      <button mat-raised-button class="campos-botao" (click)="cancelar()">
+        Sim, eu quero  cancelar
+      </button>
+      <button mat-stroked-button class="botao-voltar" (click)="fechar()">
+        Voltar ao início
+      </button>
+
+
 </div>
+

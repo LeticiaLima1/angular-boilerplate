@@ -1,13 +1,12 @@
-<div mat-dialog-content>{{corpo}}</div>
-<div mat-dialog-actions >
-  <div class="row">
-    <button mat-raised-button color="primary" class="campos-botao" (click)="excluirAtividade()">
-      Confirmar e excluir a atividade
-    </button>
-  </div>
-  <div class="row">
-    <button mat-stroked-button  color="warn" (click)="onNoClick()">
-      Cancelar
-    </button>
-  </div>
+
+
+<div class="conteudo">
+  <i class="fa fa-exclamation-circle fa-3x icone "></i>
+  <div mat-dialog-content class="titulo">Deseja realmente excluir essa atividade?</div>
+      <button mat-raised-button class="campos-botao" (click)="excluirAtividade()">
+        Confirmar e excluir a atividade
+      </button>
+      <button mat-stroked-button  class="botao-cancelar" (click)="onNoClick()">
+        Cancelar
+      </button>
 </div>

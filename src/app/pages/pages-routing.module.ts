@@ -4,7 +4,6 @@ import { AtividadesComponent } from "./atividades/atividades.component";
 import { HistoricoComponent } from "./historico/historico.component";
 import { ListaMembrosComponent } from "./lista-membros/lista-membros.component";
 import { ListasDeAtividadesComponent } from "./listas-de-atividades/listas-de-atividades.component";
-import { NovoMembroComponent } from "./lista-membros/novo-membro/novo-membro.component";
 import { PagesComponent } from "./pages.component";
 import { MembroEditarComponent } from "./lista-membros/membro-editar/membro-editar.component";
 import { MembroExcluirComponent } from "./lista-membros/membro-excluir/membro-excluir.component";
@@ -30,10 +29,6 @@ const routes: Routes = [
 			{
 				path: 'lista-membros',
 				component: ListaMembrosComponent,
-			},
-			{
-				path: 'lista-membros/novo-membro',
-				component: NovoMembroComponent
 			},
 			{
 				path: 'lista-membros/membro-editar',

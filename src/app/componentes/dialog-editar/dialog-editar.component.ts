@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import {Component, Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MembroAPI, MembroAPIPhoto } from 'src/app/models/membros';
+import { MembroAPI } from 'src/app/models/membros';
 import { MembrosService } from 'src/app/pages/membros.service';
+import { DialogErroComponent } from '../dialog-erro/dialog-erro.component';
 import { DialogSucessoComponent } from '../dialog-sucesso/dialog-sucesso.component';
 
 @Component({
@@ -21,6 +22,7 @@ export class DialogEditarComponent {
   file: File;
   mostrarPreview: boolean = false;
   fileX: any;
+  urlPhoto: string;
 
   constructor(
     public dialog: MatDialog, 
@@ -28,6 +30,8 @@ export class DialogEditarComponent {
     @Inject(MAT_DIALOG_DATA) public membroDialog: MembroAPI,
     public membroService: MembrosService) {
     this.membro = membroDialog;
+    this.preview = this.membro.photo;
+    this.urlPhoto = this.membro.photo;
   }
 
   onNoClick(): void {
@@ -35,41 +39,82 @@ export class DialogEditarComponent {
   }
 
   editarMembro(): void{
+    if(this.file) {
+
+      const formData = this.preencheFormulario(this.file);
+
+      this.chamarEditarMembro(formData);
+
+      
+    } else {
+
+      fetch(this.urlPhoto)
+        .then(async response => {
+  
+          const contentType = response.headers.get('content-type');
+          const type = contentType.split('/')[1];
+          const fileName = this.membro.name+'.'+type;
+          const blob = await response.blob();
+          const file = new File([blob], fileName, { 'type': contentType});
+
+  
+          const formData = this.preencheFormulario(file);
+      
+          this.chamarEditarMembro(formData);
+
+        });
+    }
+  }
+
+  preencheFormulario(file: File): FormData{
     const formData = new FormData();
-    formData.append('type', this.fileX.type);
-    // formData.append('description', this.fileX.name);
-    formData.append('photo', this.preview); 
+    formData.append('type', file.type);
+    formData.append('photo', file); 
+    formData.append('id', this.membro.id); 
+    formData.append('name', this.membro.name); 
+    formData.append('birthdate', this.membro.birthdate); 
+    formData.append('allowance', String(this.membro.allowance));
+    return formData;
+  }
 
-    const membroApi = new MembroAPIPhoto();
-    membroApi.id = this.membro.id;
-    membroApi.name = this.membro.name;
-    membroApi.birthdate = this.membro.birthdate;
-    membroApi.allowance = this.membro.allowance;
-    membroApi.photo = this.file;
 
-    this.membroService.editarMembro(membroApi).subscribe(
+  chamarEditarMembro(form: FormData): void{
+    this.membroService.editarMembro(form).subscribe(
       (retorno) => {
         console.log(retorno);
-        this.dialogRef.close();
+        this.dialogRef.close(true);
         this.openDialogSucesso('Membro editado com sucesso!');
       },
-      (retornoErro: HttpErrorResponse) => {
-        console.log(retornoErro);
-        let listErro: string = 'Erro ao editar membro: ';
+      (httpErrorResponse: HttpErrorResponse) => {
+        console.log(httpErrorResponse);
+        const listErro: string = 'Erro ao editar membro: '+httpErrorResponse.error.error;
 
-        if(retornoErro.error.error.length > 0){
-          retornoErro.error.error.forEach(element => {
-            listErro = listErro + element.msg + ',';
-          });
-        }
-        this.openDialogSucesso(listErro);
+        // if(retornoErro.error.error.length > 0){
+        //   retornoErro.error.error.forEach(element => {
+        //     listErro = listErro + element.msg + ',';
+        //   });
+        // }
+        this.openDialogErro(listErro);
       } 
     );
+
+  }
+  openDialogErro(texto: string): void {
+    const dialog  = this.dialog.open(DialogErroComponent, {
+      width: '100%',
+      data: texto,
+    });  
+
+    dialog.afterClosed().subscribe(result => {
+      if(!result){
+        this.dialogRef.close(true);
+      }
+    });
   }
   
   openDialogSucesso(texto: string): void {
     this.dialog.open(DialogSucessoComponent, {
-      width: '250px',
+      width: '100%',
       data: texto,
     });
   }

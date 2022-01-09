@@ -1,14 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { environment } from 'src/app/environments/environment';
-
-const API = environment.apiURL
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-membro',
   templateUrl: './membro.component.html',
   styleUrls: ['./membro.component.css']
 })
-export class MembroComponent implements OnInit {
+export class MembroComponent{
 
   private urlOriginal = '';
 
@@ -20,17 +17,11 @@ export class MembroComponent implements OnInit {
     if(url.startsWith('data')) {
       this.urlOriginal = url;
     } else {
-      this.urlOriginal = `${API}/imgs/${url}`;
+      this.urlOriginal = url;
     }
   }
 
   get url (): string{
     return this.urlOriginal;
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

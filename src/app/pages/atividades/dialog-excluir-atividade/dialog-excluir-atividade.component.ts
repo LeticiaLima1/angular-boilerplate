@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogSucessoComponent } from 'src/app/componentes/dialog-sucesso/dialog-sucesso.component';
 import { Atividade } from 'src/app/models/atividade';
+import { AtividadeService } from '../atividade.service';
 
 @Component({
   selector: 'app-dialog-excluir-atividade',
@@ -12,12 +13,13 @@ import { Atividade } from 'src/app/models/atividade';
 
 export class DialogExcluirAtividadeComponent {
 
-  corpo: string = 'Deseja realmente essa atividade?';
+  corpo: string = 'Deseja realmente excluir essa atividade?';
   atividade: Atividade;
 
   constructor(
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<DialogExcluirAtividadeComponent>,
+    public atividadeService: AtividadeService,
     @Inject(MAT_DIALOG_DATA) public atividadeDialog: Atividade
     )
     {
@@ -29,14 +31,20 @@ export class DialogExcluirAtividadeComponent {
   }
 
   excluirAtividade(): void{
-    // this.atividadeService.excluirAtividade(this.atividade.id);
-    this.dialogRef.close();
-    this.openDialogSucesso('Atividade excluída com sucesso!');
+    this.atividadeService.excluir(this.atividade.id).subscribe(
+      () => {
+        this.dialogRef.close(true);
+        this.openDialogSucesso('Atividade excluída com sucesso!');
+      },
+      (erro) => {
+        console.log(erro);
+      }
+    );
   }
   
   openDialogSucesso(texto: string): void {
     this.dialog.open(DialogSucessoComponent, {
-      width: '250px',
+      width: '100%',
       data: texto,
     });
   }

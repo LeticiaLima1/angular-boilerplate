@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogConfirmacaoComponent } from 'src/app/componentes/dialog-confirmacao/dialog-confirmacao.component';
 import { DialogSucessoComponent } from 'src/app/componentes/dialog-sucesso/dialog-sucesso.component';
+import { AtividadeService } from '../atividade.service';
 
 @Component({
   selector: 'app-dialog-cadastrar-atividade',
@@ -20,6 +21,7 @@ export class DialogCadastrarAtividadeComponent implements OnInit {
   constructor(
     public dialog: MatDialog, 
     public dialogRef: MatDialogRef<DialogCadastrarAtividadeComponent>,
+    public atividadeService: AtividadeService
     ) {
   }
 
@@ -35,19 +37,22 @@ export class DialogCadastrarAtividadeComponent implements OnInit {
 
   cadastrar(): void {
     if(this.form.valid){
-      // this.novoMembroService.cadastraNovoMembro(novoMembro).subscribe(() => {
-        this.dialogRef.close();
-        this.openDialogSucesso('Atividade adicionada com sucesso!');
-      // },
-      // (error) => {
-      //   console.log (error);
-      // });
+      const formData = new FormData();
+      formData.append('description', this.descricao);
+      this.atividadeService.cadastrar(formData).subscribe(
+        () => {
+          this.dialogRef.close(true);
+          this.openDialogSucesso('Atividade adicionada com sucesso!');
+        },
+        (error) => {
+          console.log (error);
+        });
     }
   }
   
   openDialogSucesso(texto: string): void {
     this.dialog.open(DialogSucessoComponent, {
-      width: '250px',
+      width: '100%',
       data: texto,
     });
   }
@@ -58,7 +63,7 @@ export class DialogCadastrarAtividadeComponent implements OnInit {
   
   openDialogConfirmacao(pergunta: string): void {
     const dialog = this.dialog.open(DialogConfirmacaoComponent, {
-      width: '250px',
+      width: '100%',
       data: pergunta,
     });
     

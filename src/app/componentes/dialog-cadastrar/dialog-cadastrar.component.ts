@@ -1,9 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Membro, NovoMembro } from 'src/app/models/membros';
 import { MembrosService } from 'src/app/pages/membros.service';
 import { DialogConfirmacaoComponent } from '../dialog-confirmacao/dialog-confirmacao.component';
+import { DialogErroComponent } from '../dialog-erro/dialog-erro.component';
 import { DialogSucessoComponent } from '../dialog-sucesso/dialog-sucesso.component';
 
 @Component({
@@ -15,8 +17,7 @@ import { DialogSucessoComponent } from '../dialog-sucesso/dialog-sucesso.compone
 
 export class DialogCadastrarComponent implements OnInit {
 
-  titulo: string = 'Cadastrar novo membro';
-  corpo: string = 'Insira os dados abaixo para cadastrar um novo membro ao RIOTT.';
+  
   membro: Membro;
   membroService: MembrosService;
   preview!: string;
@@ -53,26 +54,63 @@ export class DialogCadastrarComponent implements OnInit {
 
   cadastrar(): void {
     if(this.form.valid){
-      const novoMembro: NovoMembro = { 
-        foto: this.file,
-        valorMesada: this.form.value.valorMesada, 
-        nome: this.form.value.nome, 
-        dataNascimento: this.form.value.dataNascimento 
-      };
-      // this.novoMembroService.cadastraNovoMembro(novoMembro).subscribe(() => {
-        this.dialogRef.close();
-        this.openDialogSucesso('Cadastro realizado com sucesso!');
-      // },
-      // (error) => {
-      //   console.log (error);
-      // });
+     const formData = this.preencheFormulario(this.file);
+      this.novoMembroService.cadastraNovoMembro(formData).subscribe(() => {
+        this.dialogRef.close(true);
+        this.openDialogSucesso('Membro adicionado com sucesso!');
+      },
+      (httpErrorResponse: HttpErrorResponse) => {
+        let listError: string = 'Algo deu errado: ';
+        console.log(httpErrorResponse);
+        if(httpErrorResponse.error.error[0].msg){
+          httpErrorResponse.error.error.forEach(erro => {
+              console.log(erro.msg);
+              listError = listError + erro.msg;
+            });
+        }else{
+          listError = listError + httpErrorResponse.error.error;
+        }
+        this.openDialogErro(listError);
+      });
     }
+  }
+
+  preencheFormulario(file: File): FormData{
+    const formData = new FormData();
+    if (file){
+      formData.append('type', file.type);
+      formData.append('photo', file); 
+    }
+    formData.append('name', this.nome); 
+    formData.append('birthdate', this.formataStringData(this.dataNascimento)); 
+    formData.append('allowance', String(this.valorMesada));
+    return formData;
+  }
+
+  formataStringData(data: Date): string {
+    const dataString = data.toString();
+    const ano = dataString.split("-")[0];
+    const mes = dataString.split("-")[1];
+    const dia = dataString.split("-")[2];
+    return ("0"+dia).slice(-2)+ '/'  + ("0"+mes).slice(-2) + '/' + ano;
   }
   
   openDialogSucesso(texto: string): void {
     this.dialog.open(DialogSucessoComponent, {
-      width: '250px',
+      width: '100%',
       data: texto,
+    });
+  }
+
+  openDialogErro(texto: string): void {
+    const dialog = this.dialog.open(DialogErroComponent, {
+      width: '100%',
+      data: texto,
+    });
+    dialog.afterClosed().subscribe(result => {
+      if(!result){
+        this.dialogRef.close(true);
+      }
     });
   }
 
@@ -129,12 +167,12 @@ export class DialogCadastrarComponent implements OnInit {
   }
 
   cancelar(): void{
-    this.openDialogConfirmacao('Deseja realmente cancelar?');
+    this.openDialogConfirmacao('Deseja realmente cancelar esse cadastro?');
   }
   
   openDialogConfirmacao(pergunta: string): void {
     const dialog = this.dialog.open(DialogConfirmacaoComponent, {
-      width: '250px',
+      width: '100%',
       data: pergunta,
     });
     

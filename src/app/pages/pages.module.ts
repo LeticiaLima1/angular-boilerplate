@@ -4,7 +4,6 @@ import { PagesRoutingModule } from "./pages-routing.module";
 import { PagesComponent } from "./pages.component";
 import { ListaMembrosComponent } from './lista-membros/lista-membros.component';
 import { CabecalhoModule } from "../componentes/cabecalho/cabecalho.module";
-import { NovoMembroComponent } from './lista-membros/novo-membro/novo-membro.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { MatInputModule } from '@angular/material/input';
@@ -29,6 +28,7 @@ import { DialogConfirmacaoComponent } from "../componentes/dialog-confirmacao/di
 import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar-atividade/dialog-cadastrar-atividade.component";
 import { DialogExcluirAtividadeComponent } from "./atividades/dialog-excluir-atividade/dialog-excluir-atividade.component";
 import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-atividade/dialog-editar-atividade.component";
+import { DialogErroComponent } from "../componentes/dialog-erro/dialog-erro.component";
 
 @NgModule({
 	imports: [
@@ -51,7 +51,6 @@ import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-ativi
 	declarations: [
 		PagesComponent,
 		ListaMembrosComponent,
-		NovoMembroComponent,
 		MembroComponent,
 		HistoricoComponent,
 		ListasDeAtividadesComponent,
@@ -60,6 +59,7 @@ import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-ativi
 		MembroEditarComponent,
 		DialogComponent,
 		DialogSucessoComponent,
+		DialogErroComponent,
 		DialogEditarComponent,
 		DialogCadastrarComponent,
 		DialogConfirmacaoComponent,
@@ -76,6 +76,7 @@ import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-ativi
 		DialogConfirmacaoComponent,
 		DialogCadastrarAtividadeComponent,
 		DialogExcluirAtividadeComponent,
-		DialogEditarAtividadeComponent  ]
+		DialogEditarAtividadeComponent,
+		DialogErroComponent ]
 })
 export class PagesModule { }

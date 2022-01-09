@@ -1,6 +1,80 @@
+.titulo{
+    font-size: 25px;
+    font-weight: 550;
+}
+
+.subtitulo{
+    font-size: 16px;
+    text-align: justify;
+    width: 306px;
+    margin-left: 40%;
+    margin-top: 5%;
+
+}
+
+.icone{
+    color: #B5C5CA;
+    text-align: center;
+    padding: 2.5vh 1vh 1vh 4vh;
+    display: inline-block;
+
+    
+}
+
+.texto-up{
+    color: #7C8D93 ;
+    text-align: justify;
+    padding: 2vh 1vh 2vh 2vh;
+    left: 6%;
+    width: 80%;
+    position: relative;
+
+    
+}
+
+.botao-up{
+    border-color: #B5C5CA;
+    border-radius: 4px;
+    width: 306px;
+    margin-left: 40%;
+    margin-top: 1%;
+    border-style: dashed;
+    background-color: #ffffff;
+    border-width: 0.1vh;
+
+}
+
+
+.c-dados{
+    width: 306px;
+    margin-left: 40%;
+    margin-top: 1%;
+    background-color: #ffffff;
+ 
+}
+
+.c-itens{
+    font-size: 16px;
+    color: #7C8D93;
+}
+
+
 .campos-botao{
     text-align: center;
     color: #ffffff;
     background-color: #006d77;
+    margin-bottom: 1vh;
+    justify-content: center;
+    width: 306px;
+    margin-left: 40%;
+    margin-top: 1%;
 }
-
+  
+ .botao-cancelar{
+    text-align: center;
+    color: #E29578;
+    border-color: #E29578;
+    border-width: 0.2vh;
+    width: 306px;
+    margin-left: 40%;
+}

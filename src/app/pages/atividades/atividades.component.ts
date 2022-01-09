@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Atividade } from 'src/app/models/atividade';
+import { AtividadeService } from './atividade.service';
 import { DialogCadastrarAtividadeComponent } from './dialog-cadastrar-atividade/dialog-cadastrar-atividade.component';
 import { DialogEditarAtividadeComponent } from './dialog-editar-atividade/dialog-editar-atividade.component';
 import { DialogExcluirAtividadeComponent } from './dialog-excluir-atividade/dialog-excluir-atividade.component';
@@ -10,49 +11,107 @@ import { DialogExcluirAtividadeComponent } from './dialog-excluir-atividade/dial
   templateUrl: './atividades.component.html',
   styleUrls: ['./atividades.component.css']
 })
-export class AtividadesComponent {
 
-  constructor(private dialog: MatDialog) {}  
+export class AtividadesComponent implements OnInit{
 
-  listaAtividades: Atividade[] = [
-    {
-      descricao: 'Tirar lixo' ,
-      
-    },
-    {
-      descricao: 'Arrumar a cama' ,
-      
-    },
-    {
-      descricao: 'Guardar sapatos' ,
-      
-    }
-  ];
+  listaAtividades : Atividade[];
 
-  cadastrarAtividade(): void{
-    this.openDialogCadastrarAtividade();
+  constructor(private dialog: MatDialog, private atividadeService: AtividadeService) {}  
 
+  ngOnInit(): void {
+    this.atividadeService.buscar().subscribe(
+      (result) => {
+        this.listaAtividades = [];
+        this.listaAtividades = result.data;
+      },
+      (erro) => {
+        console.log(erro);
+      }
+    );
   }
+
+  
+
+  // listaAtividades: Atividade[] = [
+  //   {
+  //     descricao: 'Tirar lixo' ,
+      
+  //   },
+  //   {
+  //     descricao: 'Arrumar a cama' ,
+      
+  //   },
+  //   {
+  //     descricao: 'Guardar sapatos' ,
+      
+  //   }
+  // ];
+
+
 
   openDialogCadastrarAtividade(): void {
-    this.dialog.open(DialogCadastrarAtividadeComponent, {
-      width: '500px',
-      height: '500px'
+    const dialogo = this.dialog.open(DialogCadastrarAtividadeComponent, {
+      width: '100%',
     });
+    dialogo.afterClosed().subscribe(
+      (resultado)  => {
+        if(resultado) {
+          this.atividadeService.buscar().subscribe(
+            (result) => {
+              this.listaAtividades = [];
+              this.listaAtividades = result.data;
+            },
+            (erro) => {
+              console.log(erro);
+            }
+          );
+        }
+      }
+    );
   }
 
-  openDialogExcluirAtividade(): void {
-    this.dialog.open(DialogExcluirAtividadeComponent, {
-      width: '300px',
+  openDialogExcluirAtividade(atividade: Atividade): void {
+    const dialogo = this.dialog.open(DialogExcluirAtividadeComponent, {
+      width: '100%',
+      data: atividade,
     });
+    dialogo.afterClosed().subscribe(
+      (resultado)  => {
+        if(resultado) {
+          this.atividadeService.buscar().subscribe(
+            (result) => {
+              this.listaAtividades = [];
+              this.listaAtividades = result.data;
+            },
+            (erro) => {
+              console.log(erro);
+            }
+          );
+        }
+      }
+    );
   }
 
   openDialogEditarAtividade(atividade: Atividade): void {
-    this.dialog.open(DialogEditarAtividadeComponent, {
-      width: '400px',
-      height: '400px',
+    const dialogo = this.dialog.open(DialogEditarAtividadeComponent, {
+      width: '100%',
       data: atividade
     });
+    dialogo.afterClosed().subscribe(
+      (resultado)  => {
+        if(resultado) {
+          this.atividadeService.buscar().subscribe(
+            (result) => {
+              this.listaAtividades = [];
+              this.listaAtividades = result.data;
+            },
+            (erro) => {
+              console.log(erro);
+            }
+          );
+        }
+      }
+    );
   }
 
 }

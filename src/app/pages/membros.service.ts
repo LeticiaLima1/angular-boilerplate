@@ -1,9 +1,9 @@
-import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TokenService } from '../autenticacao/token.service';
 import { environment } from '../environments/environment';
-import { Membro, MembroAPI, MembroAPIPhoto, Membros, NovoMembro, RespostaMembroAPI } from '../models/membros';
+import { RespostaMembroAPI } from '../models/membros';
 
 
 const API = environment.apiURL;
@@ -17,13 +17,6 @@ export class MembrosService {
     private http: HttpClient, 
     private tokenService:TokenService) { }
 
-  listaDoUsuario(nomeDoUsuario:string):Observable<Membros>{
-    return this.http.get<Membros>(`${API}/${nomeDoUsuario}/membros`);
-  }
-
-  buscaPorId(id:string):Observable<Membro>{
-    return this.http.get<Membro>(`${API}/membros/${id}`);
-  }
 
   excluiMembro(id: string): Observable<any>{
     const token = this.tokenService.retornaToken();
@@ -37,15 +30,6 @@ export class MembrosService {
    
   }
 
-  inserirFoto(arquivo: File): Observable<HttpEvent<any>>{
-    const formData = new FormData();
-    formData.append('imageFile', arquivo);
-
-    return this.http.post(`${API}/membros/inserirFoto`, formData, {
-      observe: 'events',
-      reportProgress: true,
-    });
-  }
 
   buscarListaMembros(): Observable<RespostaMembroAPI>{
 
@@ -59,11 +43,17 @@ export class MembrosService {
     return this.http.get<RespostaMembroAPI>('http://localhost:4444/v1/user/members', { headers: headers });
   }
 
-  cadastraNovoMembro(novoMembro: NovoMembro): Observable<any>{
-    return this.http.post(`${API}user/inserirMembro`, novoMembro);
+  cadastraNovoMembro(formData: FormData): Observable<any>{
+    const token = this.tokenService.retornaToken();
+
+    const headers = new HttpHeaders({
+      'accept': '*/*',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post('http://localhost:4444/v1/user/members', formData, { headers: headers });
   }
 
-  editarMembro(membro: MembroAPIPhoto): Observable<any>{
+  editarMembro(membro: FormData): Observable<any>{
     
     const token = this.tokenService.retornaToken();
 

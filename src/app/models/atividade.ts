@@ -1,4 +1,11 @@
 export interface Atividade {
-    descricao: string;
-  }
+  id: string;
+  description: string
+}
   
+
+export interface AtividadeResposta{
+  status: boolean;
+  date: Date;
+  data: Atividade[];
+}
