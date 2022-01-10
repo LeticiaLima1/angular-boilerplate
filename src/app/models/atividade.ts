@@ -3,7 +3,6 @@ export interface Atividade {
   description: string
 }
   
-
 export interface AtividadeResposta{
   status: boolean;
   date: Date;

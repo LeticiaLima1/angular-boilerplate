@@ -4,16 +4,15 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { DialogErroComponent } from 'src/app/componentes/dialog-erro/dialog-erro.component';
 import { DialogSucessoComponent } from 'src/app/componentes/dialog-sucesso/dialog-sucesso.component';
 import { Atividade } from 'src/app/models/atividade';
-import { AtividadeService } from '../atividade.service';
+import { AtividadeService } from '../../atividades/atividade.service';
 
 @Component({
-  selector: 'app-dialog-editar-atividade',
-  templateUrl: 'dialog-editar-atividade.component.html',
-  styleUrls: ['./dialog-editar-atividade.component.css']
-
+  selector: 'app-dialog-gerenciar',
+  templateUrl: 'dialog-gerenciar.component.html',
+  styleUrls: ['./dialog-gerenciar.component.css']
 })
 
-export class DialogEditarAtividadeComponent {
+export class DialogGerenciarComponent {
 
   titulo: string = 'Editar atividade';
   corpo: string = 'Altere os dados abaixo para editar uma atividade no RIOTT.';
@@ -22,12 +21,12 @@ export class DialogEditarAtividadeComponent {
   
   constructor(
     public dialog: MatDialog, 
-    public dialogRef: MatDialogRef<DialogEditarAtividadeComponent>,
-    public atividadeService: AtividadeService,
-    @Inject(MAT_DIALOG_DATA) public atividadeDialog: Atividade
+    public dialogRef: MatDialogRef<DialogGerenciarComponent>,
+    @Inject(MAT_DIALOG_DATA) public atividadeDialog: Atividade,
+    private atividadeService: AtividadeService
     )
     {
-    this.atividade = atividadeDialog;
+    // this.atividade = atividadeDialog;
   }
 
   

@@ -29,6 +29,11 @@ import { DialogCadastrarAtividadeComponent } from "./atividades/dialog-cadastrar
 import { DialogExcluirAtividadeComponent } from "./atividades/dialog-excluir-atividade/dialog-excluir-atividade.component";
 import { DialogEditarAtividadeComponent } from "./atividades/dialog-editar-atividade/dialog-editar-atividade.component";
 import { DialogErroComponent } from "../componentes/dialog-erro/dialog-erro.component";
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import {MatSelectModule} from '@angular/material/select';
+import { DialogDetalhesComponent } from "./historico/dialog-detalhes/dialog-detalhes.component";
+import { DialogGerenciarComponent } from "./listas-de-atividades/dialog-gerenciar/dialog-gerenciar.component";
+
 
 @NgModule({
 	imports: [
@@ -46,7 +51,8 @@ import { DialogErroComponent } from "../componentes/dialog-erro/dialog-erro.comp
 		MatCardModule,
 		CartaoModule,
 		MensagemModule,
-		
+		ScrollingModule,
+		MatSelectModule,
 	],
 	declarations: [
 		PagesComponent,
@@ -65,7 +71,9 @@ import { DialogErroComponent } from "../componentes/dialog-erro/dialog-erro.comp
 		DialogConfirmacaoComponent,
 		DialogCadastrarAtividadeComponent,
 		DialogExcluirAtividadeComponent,
-		DialogEditarAtividadeComponent
+		DialogEditarAtividadeComponent,
+		DialogDetalhesComponent,
+		DialogGerenciarComponent
 	],
 	providers: [],
 	entryComponents: [ 
@@ -77,6 +85,8 @@ import { DialogErroComponent } from "../componentes/dialog-erro/dialog-erro.comp
 		DialogCadastrarAtividadeComponent,
 		DialogExcluirAtividadeComponent,
 		DialogEditarAtividadeComponent,
-		DialogErroComponent ]
+		DialogErroComponent,
+		DialogDetalhesComponent,
+		DialogGerenciarComponent ]
 })
 export class PagesModule { }

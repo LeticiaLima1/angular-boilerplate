@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import {Component, Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogErroComponent } from 'src/app/componentes/dialog-erro/dialog-erro.component';
 import { DialogSucessoComponent } from 'src/app/componentes/dialog-sucesso/dialog-sucesso.component';
 import { Atividade } from 'src/app/models/atividade';
 import { AtividadeService } from '../atividade.service';
@@ -35,17 +37,39 @@ export class DialogExcluirAtividadeComponent {
       () => {
         this.dialogRef.close(true);
         this.openDialogSucesso('Atividade excluída com sucesso!');
-      },
-      (erro) => {
-        console.log(erro);
+      }, (httpErrorResponse: HttpErrorResponse) => {
+        let listError: string = 'Algo deu errado: ';
+        console.log(httpErrorResponse);
+        if(httpErrorResponse.error.error[0].msg){
+          httpErrorResponse.error.error.forEach(erro => {
+              console.log(erro.msg);
+              listError = listError + erro.msg;
+            });
+        }else{
+          listError = listError + httpErrorResponse.error.error;
+        }
+        this.openDialogErro(listError);
+      });
+}
+
+openDialogSucesso(texto: string): void {
+  this.dialog.open(DialogSucessoComponent, {
+    width: '100%',
+    data: texto,
+  });
+}
+
+openDialogErro(texto: string): void {
+  const dialogErro = this.dialog.open(DialogErroComponent, {
+    width: '100%',
+    data: texto,
+  });
+  dialogErro.afterClosed().subscribe(
+    (result) => {
+      if (!result){
+        this.dialogRef.close(true);
       }
-    );
-  }
-  
-  openDialogSucesso(texto: string): void {
-    this.dialog.open(DialogSucessoComponent, {
-      width: '100%',
-      data: texto,
-    });
-  }
+    } 
+  );
+}
 }

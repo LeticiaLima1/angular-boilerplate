@@ -1,0 +1,104 @@
+<div class="row">
+  <mat-card-title class="titulo col-11">Gerenciar Listas</mat-card-title>
+  <i class="col-1 fa fa-times fa-3x" (click)="onNoClick()"></i>
+</div>
+
+<div class="row">
+  <h2 class="subtitulo"> Membros ativos</h2>
+  <div class="col-3" >
+  <mat-card class="card mouse">
+   
+    <div class="row">
+        <img class="col-7 image" src="assets/img/home.jpg">
+        <div class="col-5">
+            <mat-card-subtitle>Membro</mat-card-subtitle>
+            <p>Letícia Lima</p>
+        </div>
+    </div>
+  </mat-card>
+</div>
+
+  <div class="col-3">
+
+    <mat-card class="card mouse">
+   
+      <div class="row">
+          <img class="col-7 image" src="assets/img/home.jpg">
+          <div class="col-5">
+              <mat-card-subtitle>Membro</mat-card-subtitle>
+              <p>Letícia Lima</p>
+          </div>
+      </div>
+    </mat-card>
+  </div>
+  
+
+  <div class="col-3">
+
+    <mat-card class="card mouse">
+   
+      <div class="row">
+          <img class="col-7 image" src="assets/img/home.jpg">
+          <div class="col-5">
+              <mat-card-subtitle>Membro</mat-card-subtitle>
+              <p>Letícia Lima</p>
+          </div>
+      </div>
+    </mat-card>
+  </div>
+
+
+<div class="col-12">
+    <div class="row">
+
+      <div class="col-7">
+        <mat-card-subtitle>Status da lista:</mat-card-subtitle>
+        <p class="espera">Em espera</p>
+    </div>
+    <div class="col-5">
+      <button mat-stroked-button  class="botao-excluir" (click)="onNoClick()">
+        Excluir lista
+      </button>
+      <button mat-stroked-button  class="botao-editar" (click)="onNoClick()">
+        Editar lista
+      </button>
+      <button mat-raised-button class="campos-botao" (click)="onNoClick()">
+        Iniciar lista
+      </button>
+    </div>
+    </div>
+</div>
+
+<div class="col-12">
+  <h2 class="subtitulo">Atividades:</h2>
+</div>
+
+<div class="col-12">
+  <mat-card class="card">
+    <div class="row">
+
+      <div class="col-10">
+        <mat-card-subtitle>Descrição da atividade</mat-card-subtitle>
+        <p >Guardar as roupas</p>
+    </div>
+    <div class="col-2">
+        <mat-card-subtitle class="dados">Valor do desconto:</mat-card-subtitle>
+        <p class="status">R$ 10,00</p>
+    </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="card">
+    <div class="row">
+
+      <div class="col-10">
+        <mat-card-subtitle>Descrição da atividade</mat-card-subtitle>
+        <p >Tirar o lixo</p>
+    </div>
+    <div class="col-2">
+        <mat-card-subtitle class="dados">Valor do desconto</mat-card-subtitle>
+        <p class="status">R$ 15,00</p>
+    </div>
+    </div>
+  </mat-card>
+</div>

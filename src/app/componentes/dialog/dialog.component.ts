@@ -37,7 +37,8 @@ export class DialogComponent {
         () => {
           this.dialogRef.close(true);
           this.openDialogSucesso('Membro excluído com sucesso!');
-        }, (httpErrorResponse: HttpErrorResponse) => {
+        }, 
+        (httpErrorResponse: HttpErrorResponse) => {
           let listError: string = 'Algo deu errado: ';
           console.log(httpErrorResponse);
           if(httpErrorResponse.error.error[0].msg){

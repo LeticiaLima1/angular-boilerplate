@@ -5,18 +5,11 @@ import { TokenService } from 'src/app/autenticacao/token.service';
 import { environment } from 'src/app/environments/environment';
 import { AtividadeResposta } from 'src/app/models/atividade';
 
-
-
-
 const apiURL = environment.apiURL+'/tasks';
-
-
 
 @Injectable({
   providedIn: 'root'
 })
-
-
 
 export class AtividadeService {
 
@@ -55,6 +48,17 @@ export class AtividadeService {
         'Authorization': `Bearer ${token}`
       });
       return this.http.delete<AtividadeResposta>(apiURL+'/'+id, { headers: headers });
+
+    }
+
+    editar(formdata: FormData): Observable<any>{
+      const token = this.tokenService.retornaToken();
+
+      const headers = new HttpHeaders({
+        'accept': '*/*',
+        'Authorization': `Bearer ${token}`
+      });
+      return this.http.put<AtividadeResposta>(apiURL, formdata, { headers: headers });
 
     }
 

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Membro, NovoMembro } from 'src/app/models/membros';
+import { Membro } from 'src/app/models/membros';
 import { MembrosService } from 'src/app/pages/membros.service';
 import { DialogConfirmacaoComponent } from '../dialog-confirmacao/dialog-confirmacao.component';
 import { DialogErroComponent } from '../dialog-erro/dialog-erro.component';

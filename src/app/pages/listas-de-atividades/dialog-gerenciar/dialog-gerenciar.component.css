@@ -1,0 +1,69 @@
+.titulo{
+    font-size: 25px;
+    font-weight: 550;
+    padding: 20px;
+}
+
+.card {
+    border-width: 0.1vh;
+    width: 88%;
+    padding: 1.5%;
+    margin-bottom: 2em;
+    box-shadow: none !important;
+    transition: none !important;
+  }
+
+
+  .mouse:hover, .mouse:active{
+    border-color: #83C5BE;
+}
+
+.image{
+    border-radius: 50%;
+    width: 25%;
+    height: 25%;
+    margin-bottom: 2%;
+} 
+
+.status{
+    text-align: center;
+}
+
+.dados{
+    text-align: center;
+}
+
+.espera{
+    color: #E29578;
+    font-weight: 600;
+}
+
+.campos-botao{
+    text-align: center;
+    color: #ffffff;
+    background-color: #006d77;
+    margin-bottom: 1vh;
+    justify-content: center;
+    width: 20%;
+}
+  
+ .botao-excluir{
+    text-align: center;
+    color: #E29578;
+    border-color: #E29578;
+    border-width: 0.2vh;
+    width: 20%;
+    margin-right: 3%;
+}
+
+.botao-editar{
+    text-align: center;
+    color: #ffffff;
+    background-color: #83C5BE;
+    margin-bottom: 1vh;
+    justify-content: center;
+    width: 20%;
+    margin-right: 3%;
+
+}
+  
