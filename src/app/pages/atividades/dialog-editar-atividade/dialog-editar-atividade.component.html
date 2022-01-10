@@ -1,0 +1,26 @@
+<h1 mat-dialog-title class="titulo">{{titulo}}</h1>
+<div mat-dialog-content class="subtitulo">{{corpo}}</div>
+<div >
+
+    <div class="row">
+      <mat-form-field class="c-dados" appearance="outline" floatLabel="always">
+        <mat-label class="c-itens" >Descrição da atividade</mat-label>
+        <input
+        matInput
+        [(ngModel)]="atividade.description"
+        type="text" 
+        required>
+      </mat-form-field>
+      </div>
+    
+      <div class="row">
+        <button mat-raised-button color="primary" class="campos-botao" (click)="editarAtividade()">
+          Salvar edição
+        </button>
+      </div>
+      <div class="row">
+        <button mat-stroked-button  class="botao-cancelar" (click)="onNoClick()">
+          Cancelar
+        </button>
+      </div>
+</div>

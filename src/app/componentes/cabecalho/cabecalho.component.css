@@ -1,0 +1,38 @@
+.riott {
+    color: #006D77;
+    font-size: 28px;
+    font-weight: 550;
+    margin: 2%;
+    margin-right: 63%;
+
+}
+
+
+.menu, .sair{
+    
+    color:#7C8D93;
+    font-size: 18px;
+    position: relative;
+    margin: 6px;
+    margin-bottom: 50px;
+    float: inline-end;
+    text-decoration: none;   
+  
+}
+
+nav a:hover, nav a:active {
+	text-decoration: underline; 
+    color: #006D77; 
+    font-weight: 500;
+    text-decoration-color: #E29578;
+    text-decoration-thickness: 5px ;
+}
+
+.sair{
+    text-decoration: none;
+    text-decoration-color: ;
+    color:#E29578 ;
+         
+}
+
+

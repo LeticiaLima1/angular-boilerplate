@@ -1,0 +1,90 @@
+<div class="lista">
+  <div class="row">
+      <div class="col-3">
+          <mat-card-title class="titulo">Listas:</mat-card-title>
+          <cdk-virtual-scroll-viewport itemSize="185" class="example-viewport">
+            <div *cdkVirtualFor="let membro of membrosValues" class="example-item">
+              <mat-card class="card mouse" (click)="buscarListaAtividadesPorMembro(membro)">
+                  <button mat-raised-button color="primary" class="campos-botao">
+                  </button>
+                  <div class="row">
+                      <img class=" image " src={{membro.photo}}>
+                      <div class="col-8">
+                          <p class="nome">{{membro.name}}</p>
+    
+                      <div class="row">
+                        <div class="col-6">
+                          <mat-card-subtitle>Mesada:</mat-card-subtitle>
+                        </div>
+                        <div class="col-6">
+                          <p class="dados">{{membro.allowance | currency : 'BRL'}}</p>
+                        </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-6">
+                          <mat-card-subtitle>Descontos:</mat-card-subtitle>
+                        </div>
+                        <div class="col-6">
+                          <p class="dados valor">{{membro.desconto | currency : 'BRL'}}</p>
+                        </div>
+                      </div>
+                    
+                      <div class="row">
+                        <div class="col-6">
+                          <mat-card-subtitle>Total:</mat-card-subtitle>
+                        </div>
+                        <div class="col-6">
+                          <p class="dados">{{membro.total | currency : 'BRL'}}</p>
+                        </div>
+                      </div>
+                      
+                  </div>
+                  </div>
+              </mat-card>
+
+             
+            </div>
+          </cdk-virtual-scroll-viewport>
+      </div>
+
+      <div class="col-9">
+          <mat-card-subtitle>Lista:</mat-card-subtitle>
+          <cdk-virtual-scroll-viewport itemSize="185" class="viewport-lista">
+            <p *ngIf="tasks.length < 1">Não possui lista de tarefas</p>
+            <div *cdkVirtualFor="let task of tasks" class="item-task">
+              <mat-card class="card">
+              <div class="row">
+                  <div class="col-8">
+                      <mat-card-subtitle>Descrição da atividade:</mat-card-subtitle>
+                      <p class="dados">{{task.description}}</p>
+                  </div>
+                  
+                  <div class="col-2">
+                      <mat-card-subtitle>Valor</mat-card-subtitle>
+                      <p class="dados">{{task.value | currency : 'BRL'}}</p>
+                  </div>
+    
+                  <div *ngIf="task.missed" class="col-2">
+                      <button mat-stroked-button type="submit" class="campos-botao">Faltou</button>
+                  </div>
+  
+                  <div *ngIf="!task.missed" class="col-1">
+                    <button mat-stroked-button type="submit" class="campos-botao">Marcar falta</button>
+                </div>
+              </div>
+              </mat-card>
+            </div>
+          </cdk-virtual-scroll-viewport>
+      </div>
+
+      <div class="col-3">
+        <button mat-stroked-button type="submit" class="gerenciar" (click)="openDialogGerenciar()"> 
+           <i class='fa fa-cog' style='font-size:20px'></i> Gerenciar listas
+        </button>
+      </div>
+  
+
+</div>
+</div>
+        

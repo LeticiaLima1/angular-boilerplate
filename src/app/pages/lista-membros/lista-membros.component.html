@@ -1,0 +1,51 @@
+<div class="lista">
+  <div>
+    <mat-card-title>Membros:
+    <button mat-raised-button color="primary" class="campos-botao">
+      <a (click)="openDialogCadastrar()">Cadastrar Novo Membro</a>
+    </button>
+    </mat-card-title>
+  </div>
+
+  <div *ngFor="let membro of membros" class="col-12">
+    <mat-card  class="card">
+      <div class="row">
+          <div class="col-1">
+            <img mat-card-avatar src={{membro.photo}} >
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <div class="col-4"> 
+              <mat-card-subtitle>Membro:</mat-card-subtitle>
+              <p class="dados">{{membro.name}}</p>
+            </div>
+            <div class="col-4">
+              <mat-card-subtitle>Data de nascimento:</mat-card-subtitle>
+              <p class="dados">{{membro.birthdate}}</p>
+            </div>
+            <div class="col-4">
+              <mat-card-subtitle>Valor da mesada:</mat-card-subtitle>
+              <p class="dados">{{membro.allowance | currency : 'BRL'}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3" >
+          <div class="row">
+            <div class="col-4">
+              <button mat-stroked-button type="submit" class="b-excluir" (click)="openDialog(membro)">Excluir</button>
+            </div>
+            <div class="col-4">
+              <button mat-raised-button type="submit" class="b-editar" (click)="openDialogEditar(membro)">Editar</button>
+            </div>
+            <div class="col-4">
+              <button mat-raised-button type="submit" class="b-lista" [routerLink]="['../listas-de-atividades']">Ver Lista</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  
+</div>
+  

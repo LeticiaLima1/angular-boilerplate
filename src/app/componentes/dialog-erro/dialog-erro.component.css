@@ -1,0 +1,45 @@
+.icone{
+    color: #E29578;
+    font-size: 220px;
+    padding: 2.5vh 1vh 1vh 4vh;
+    display: inline-block;
+    margin-left: 4%;
+
+}
+
+.titulo{
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5%;
+    padding: 2%;
+    color: #3B4244;
+    margin-bottom: 10%;
+    line-height: 40px;
+    
+}
+
+.conteudo{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    width: 306px;
+}
+
+.campos-botao{
+    text-align: center;
+    color: #ffffff;
+    background-color: #006d77;
+    margin-bottom: 2%;
+    justify-content: center;
+    margin-top: 1%;
+}
+  
+.botao-voltar{
+    text-align: center;
+    color: #ffffff;
+    background-color: #83C5BE;
+    margin-bottom: 2%;
+    justify-content: center;
+    margin-top: 1%;
+}

@@ -1,0 +1,97 @@
+.lista{
+    padding: 40px;
+}
+
+.titulo{
+    padding-bottom: 20px;
+}
+
+.subtitulo{
+    font-size: 16px;
+    text-align: justify;
+    width: 306px;
+    margin-left: 40%;
+    margin-top: 5%;
+}
+
+.nome{
+    font-size: 16px;
+    color: #3B4244;
+    font-weight: 500;
+}
+
+.dados{
+    font-size: 14px;
+    color: #3B4244;
+}
+
+.valor{
+    color: red;
+}
+
+
+.card {
+    border-width: 0.1vh;
+    width: 88%;
+    padding: 1.5%;
+    margin-bottom: 2em;
+    box-shadow: none !important;
+    transition: none !important;
+  }
+
+
+ .mouse:hover, .mouse:active .image:hover, .image:active{
+    border-color: #83C5BE;
+    border-right-width: 20px;
+}
+
+.image{
+    border-radius: 50%;
+    width: 25%;
+    height: 25%;
+    margin-bottom: 2%;
+    margin-top: 10%;
+}
+	
+
+.campos-botao{
+    text-align: center;
+    color: #ffffff;
+    background-color:  #E29578;
+    margin-bottom: 1vh;
+    justify-content: center;
+    margin-left: 40%;
+    margin-top: 1%;
+
+}
+
+.gerenciar{
+    text-align: center;
+    color: #ffffff;
+    background-color:  #83C5BE;
+    width: 80%;
+    margin-bottom: 1vh;
+    justify-content: center;
+    margin-top: 10%;
+
+}
+  
+.example-viewport {
+    height: 559px;
+    width: 359px;
+    /* border: 1px solid black; */
+  }
+  
+.example-item {
+    height: 203px;
+}
+
+.viewport-lista {
+    height: 548px;
+    width: 1100px;
+    /* border: 1px solid black; */
+  }
+  
+.item-task {
+    height: 120px;
+}
